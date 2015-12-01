@@ -12,5 +12,20 @@ namespace ComputingServices.App.Models
     [DataContract]
     public class IQTestStandardResult
     {
+        /// <summary>
+        /// IQ值
+        /// </summary>
+        [DataMember]
+        public int Value { get; set; }
+        /// <summary>
+        /// 类别
+        /// </summary>
+        [DataMember]
+        public IQLevel Level { get; set; }
+        /// <summary>
+        /// 关联标识 可为空，便于对接口返回结果的检索（批量调用）。
+        /// </summary>
+        [DataMember]
+        public string RefId { get; set; }
     }
 }
