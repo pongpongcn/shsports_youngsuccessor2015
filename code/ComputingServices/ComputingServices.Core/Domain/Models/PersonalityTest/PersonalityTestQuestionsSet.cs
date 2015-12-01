@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ComputingServices.Core.Domain.Models.PersonalityTest
 {
+    /// <summary>
+    /// 个性测试题目及答案
+    /// </summary>
     public class PersonalityTestQuestionsSet
     {
         public PersonalityTestQuestionsSet(string code)
@@ -91,6 +94,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
         G,
         H,
         I,
+        J,
         L,
         M,
         N,

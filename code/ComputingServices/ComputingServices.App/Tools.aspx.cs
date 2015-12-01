@@ -18,9 +18,9 @@ namespace ComputingServices.App
 
         }
 
-        protected void btnImportQuestionsSet_Click(object sender, EventArgs e)
+        protected void btnImportPersonalityTestQuestionsSet_Click(object sender, EventArgs e)
         {
-            List<PersonalityTestQuestionsSet> questionsSetList = new List<PersonalityTestQuestionsSet>();
+            var questionsSetList = new List<PersonalityTestQuestionsSet>();
 
             string dataDirectoryPath = MapPath("~/App_Data/PersonalityTest");
             string[] dataFilePaths = Directory.GetFiles(dataDirectoryPath, "QuestionsSet*.xml");
@@ -65,14 +65,74 @@ namespace ComputingServices.App
             {
                 using (var context = new ComputingServicesContext())
                 {
-                    foreach (PersonalityTestQuestionsSet questionsSet in questionsSetList)
+                    foreach (var questionsSet in questionsSetList)
                     {
-                        if (context.PersonalityTestQuestionsSets.Any(item => item.Code == questionsSet.Code))
+                        PersonalityTestQuestionsSet oldQuestionsSet = context.PersonalityTestQuestionsSets.SingleOrDefault(item => item.Code == questionsSet.Code);
+                        if (oldQuestionsSet != null)
                         {
-                            PersonalityTestQuestionsSet oldQuestionsSet = context.PersonalityTestQuestionsSets.Single(item => item.Code == questionsSet.Code);
                             context.PersonalityTestQuestionsSets.Remove(oldQuestionsSet);
                         }
                         context.PersonalityTestQuestionsSets.Add(questionsSet);
+                    }
+                    context.SaveChanges();
+                }
+
+                ltlLog.Text = "成功完成。";
+            }
+            else
+            {
+                ltlLog.Text = "没有数据。";
+            }
+        }
+
+        protected void btnImportPersonalityTestElementStandardParametersSet_Click(object sender, EventArgs e)
+        {
+            List<PersonalityTestElementStandardParametersSet> parametersSetList = new List<PersonalityTestElementStandardParametersSet>();
+
+            string dataDirectoryPath = MapPath("~/App_Data/PersonalityTest");
+            string[] dataFilePaths = Directory.GetFiles(dataDirectoryPath, "ElementStandardParametersSet*.xml");
+
+            foreach (string dataFilePath in dataFilePaths)
+            {
+                XmlDocument xd = new XmlDocument();
+                xd.Load(dataFilePath);
+
+                XmlElement xeElementStandardParametersSet = (XmlElement)xd.SelectSingleNode("ElementStandardParametersSet");
+                string name = xeElementStandardParametersSet.GetAttribute("Name");
+                int ageMin = int.Parse(xeElementStandardParametersSet.GetAttribute("AgeMin"));
+                int ageMax = int.Parse(xeElementStandardParametersSet.GetAttribute("AgeMax"));
+                Core.Domain.Models.Shared.Gender gender = (Core.Domain.Models.Shared.Gender)Enum.Parse(typeof(Core.Domain.Models.Shared.Gender), xeElementStandardParametersSet.GetAttribute("Gender"));
+
+                PersonalityTestElementStandardParametersSet parametersSet = new PersonalityTestElementStandardParametersSet(name, ageMin, ageMax, gender);
+
+                foreach (XmlNode xnParameter in xeElementStandardParametersSet.SelectNodes("Parameter"))
+                {
+                    XmlElement xeParameter = (XmlElement)xnParameter;
+
+                    string parameterElement = xeParameter.GetAttribute("Element");
+                    PersonalityElement element = (PersonalityElement)Enum.Parse(typeof(PersonalityElement), parameterElement);
+                    decimal parameterX = decimal.Parse(xeParameter.GetAttribute("X"));
+                    decimal parameterS = decimal.Parse(xeParameter.GetAttribute("S"));
+
+                    PersonalityTestElementStandardParameter elementStandardParameter = new PersonalityTestElementStandardParameter(element, parameterX, parameterS);
+                    parametersSet.Parameters.Add(elementStandardParameter);
+                }
+
+                parametersSetList.Add(parametersSet);
+            }
+
+            if (parametersSetList.Count > 0)
+            {
+                using (var context = new ComputingServicesContext())
+                {
+                    foreach (var parametersSet in parametersSetList)
+                    {
+                        var oldPersonalityTestElementStandardParametersSet = context.PersonalityTestElementStandardParametersSets.Where(item => item.AgeMin == parametersSet.AgeMin && item.AgeMax == parametersSet.AgeMax).ToList().SingleOrDefault(item => item.Gender == parametersSet.Gender);
+                        if (oldPersonalityTestElementStandardParametersSet != null)
+                        {
+                            context.PersonalityTestElementStandardParametersSets.Remove(oldPersonalityTestElementStandardParametersSet);
+                        }
+                        context.PersonalityTestElementStandardParametersSets.Add(parametersSet);
                     }
                     context.SaveChanges();
                 }

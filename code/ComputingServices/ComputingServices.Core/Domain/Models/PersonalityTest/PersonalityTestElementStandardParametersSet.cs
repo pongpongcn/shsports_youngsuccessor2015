@@ -6,6 +6,9 @@ using System.Text;
 
 namespace ComputingServices.Core.Domain.Models.PersonalityTest
 {
+    /// <summary>
+    /// 个性测试16种人格因素常模
+    /// </summary>
     public class PersonalityTestElementStandardParametersSet
     {
         public PersonalityTestElementStandardParametersSet(string name, int ageMin, int ageMax, Gender gender)
