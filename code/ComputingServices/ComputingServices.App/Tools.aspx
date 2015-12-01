@@ -12,6 +12,8 @@
     <div>
         <asp:Button ID="btnImportPersonalityTestQuestionsSet" runat="server" Text="导入个性测试题目及答案" OnClick="btnImportPersonalityTestQuestionsSet_Click" />
         <asp:Button ID="btnImportPersonalityTestElementStandardParametersSet" runat="server" Text="导入个性测试16种人格因素常模" OnClick="btnImportPersonalityTestElementStandardParametersSet_Click" />
+        <asp:Button ID="btnImportIQTestQuestionsSet" runat="server" Text="导入认知测试题目及答案" OnClick="btnImportIQTestQuestionsSet_Click" />
+        <asp:Button ID="btnImportIQTestStandardParametersSet" runat="server" Text="导入认知测试常模" OnClick="btnImportIQTestStandardParametersSet_Click" />
     </div>
     <asp:Literal ID="ltlLog" runat="server" EnableViewState="false" />
     </form>
