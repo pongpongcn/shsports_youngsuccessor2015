@@ -1,4 +1,5 @@
-﻿using ComputingServices.Core.Domain.Models.PersonalityTest;
+﻿using ComputingServices.Core.Domain.Models.IQTest;
+using ComputingServices.Core.Domain.Models.PersonalityTest;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,7 +15,8 @@ namespace ComputingServices.Core.Infrastructure.Persistence
         private DbSet<PersonalityTestQuestionChoiceScore> PersonalityTestQuestionChoiceScores { get; set; }
         public DbSet<PersonalityTestElementStandardParametersSet> PersonalityTestElementStandardParametersSets { get; set; }
         private DbSet<PersonalityTestElementStandardParameter> PersonalityTestElementStandardParameters { get; set; }
-        
+        public DbSet<IQTestQuestionsSet> IQTestQuestionsSets { get; set; }
+        private DbSet<IQTestQuestion> IQTestQuestions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -36,6 +38,11 @@ namespace ComputingServices.Core.Infrastructure.Persistence
 
             modelBuilder.Entity<PersonalityTestElementStandardParameter>().Ignore(type => type.Element);
             modelBuilder.Entity<PersonalityTestElementStandardParameter>().Property(type => type.ElementString).IsRequired().HasColumnName("Element");
+
+            modelBuilder.Entity<IQTestQuestionsSet>().Property(type => type.Code).IsRequired();
+            modelBuilder.Entity<IQTestQuestionsSet>().HasMany(type => type.Questions).WithRequired();
+
+            modelBuilder.Entity<IQTestQuestion>().Property(type => type.CorrectChoice).IsRequired();
         }
     }
 }
