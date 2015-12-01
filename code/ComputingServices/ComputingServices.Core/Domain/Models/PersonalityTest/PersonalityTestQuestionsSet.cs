@@ -27,6 +27,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
             this.ElementString = element.ToString();
             this.ChoiceScores = new HashSet<PersonalityTestQuestionChoiceScore>();
         }
+        private PersonalityTestQuestion() { }
         public int Id { get; private set; }
         /// <summary>
         /// 题目编号
@@ -63,6 +64,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
             this.Choice = choice;
             this.Score = score;
         }
+        private PersonalityTestQuestionChoiceScore() { }
         public int Id { get; private set; }
         public string Choice { get; private set; }
         public int Score { get; private set; }
@@ -73,25 +75,25 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
     /// </summary>
     public enum PersonalityElement
     {
-        A=101,
-        B=102,
-        C=103,
+        A,
+        B,
+        C,
         /// <summary>
         /// CPQ特有
         /// </summary>
-        D=104,
-        E=105,
-        F=106,
-        G=107,
-        H=108,
-        I=109,
-        L=112,
-        M=113,
-        N=114,
-        O=115,
-        Q1=201,
-        Q2=202,
-        Q3=203,
-        Q4=204
+        D,
+        E,
+        F,
+        G,
+        H,
+        I,
+        L,
+        M,
+        N,
+        O,
+        Q1,
+        Q2,
+        Q3,
+        Q4
     }
 }

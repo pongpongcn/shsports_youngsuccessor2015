@@ -64,10 +64,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="App\ComputingServiceTest.cs" />
     <Compile Include="Core\ComputingServicesContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ComputingServices.App\ComputingServices.App.csproj">
+      <Project>{d2deefb1-3212-4e37-9ea5-29ca5e5c0789}</Project>
+      <Name>ComputingServices.App</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComputingServices.Core\ComputingServices.Core.csproj">
       <Project>{1301f55e-3d42-4285-9df1-96d4fd9ea320}</Project>
       <Name>ComputingServices.Core</Name>

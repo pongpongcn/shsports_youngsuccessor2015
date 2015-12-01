@@ -28,6 +28,11 @@ namespace ComputingServices.App.Models
         [DataMember]
         public int Age { get; set; }
         /// <summary>
+        /// 答卷者性别
+        /// </summary>
+        [DataMember]
+        public Gender Gender { get; set; }
+        /// <summary>
         /// 关联标识 可为空，便于对接口返回结果的检索（批量调用）。
         /// </summary>
         [DataMember]
