@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\IQTest\IQTestQuestionsSet.xml" />
+    <Content Include="App_Data\IQTest\IQTestStandardParametersSet_8-8.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_15-18_Female.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_8-11_Male.xml" />
     <Content Include="App_Data\PersonalityTest\QuestionsSet1.xml" />
