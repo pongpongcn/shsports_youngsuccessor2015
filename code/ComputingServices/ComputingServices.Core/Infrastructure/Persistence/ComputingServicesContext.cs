@@ -17,6 +17,10 @@ namespace ComputingServices.Core.Infrastructure.Persistence
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<PersonalityTestQuestion>().Property(type => type.ElementString).HasColumnName("Element");
+
+            modelBuilder.Entity<PersonalityTestQuestionsSet>().HasMany(type => type.Questions).WithRequired().WillCascadeOnDelete();
+
+            modelBuilder.Entity<PersonalityTestQuestion>().HasMany(type => type.ChoiceScores).WithRequired().WillCascadeOnDelete();
         }
     }
 }

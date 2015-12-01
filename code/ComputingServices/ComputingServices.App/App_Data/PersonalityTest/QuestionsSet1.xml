@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<QuestionsSet Code="Set1">
+  <Question Code="3" Element="A">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="26" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="27" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="51" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="52" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="76" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="101" Element="A">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="126" Element="A">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="151" Element="A">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="176" Element="A">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="28" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="53" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="54" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="77" Element="B">
+    <ChoiceScore Choice="C" Score="1"/>
+  </Question>
+  <Question Code="78" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="102" Element="B">
+    <ChoiceScore Choice="C" Score="1"/>
+  </Question>
+  <Question Code="103" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="127" Element="B">
+    <ChoiceScore Choice="C" Score="1"/>
+  </Question>
+  <Question Code="128" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="152" Element="B">
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="153" Element="B">
+    <ChoiceScore Choice="C" Score="1"/>
+  </Question>
+  <Question Code="177" Element="B">
+    <ChoiceScore Choice="A" Score="1"/>
+  </Question>
+  <Question Code="178" Element="B">
+    <ChoiceScore Choice="A" Score="1"/>
+  </Question>
+  <Question Code="4" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="5" Element="C">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="29" Element="C">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="30" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="55" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="79" Element="C">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="80" Element="C">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="104" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="105" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="129" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="130" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="154" Element="C">
+    <ChoiceScore Choice="C" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+  <Question Code="179" Element="C">
+    <ChoiceScore Choice="A" Score="2"/>
+    <ChoiceScore Choice="B" Score="1"/>
+  </Question>
+</QuestionsSet>
