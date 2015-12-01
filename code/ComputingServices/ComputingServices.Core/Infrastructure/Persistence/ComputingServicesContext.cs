@@ -44,6 +44,7 @@ namespace ComputingServices.Core.Infrastructure.Persistence
             modelBuilder.Entity<IQTestQuestionsSet>().Property(type => type.Code).IsRequired();
             modelBuilder.Entity<IQTestQuestionsSet>().HasMany(type => type.Questions).WithRequired();
 
+            modelBuilder.Entity<IQTestQuestion>().Property(type => type.Group).IsRequired();
             modelBuilder.Entity<IQTestQuestion>().Property(type => type.CorrectChoice).IsRequired();
 
             modelBuilder.Entity<IQTestStandardParametersSet>().HasMany(type => type.Parameters).WithRequired();
