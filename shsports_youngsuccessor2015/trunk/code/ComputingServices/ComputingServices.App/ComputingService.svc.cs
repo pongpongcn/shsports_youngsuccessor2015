@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using System.Data.Entity;
+using ComputingServices.Core.Domain.Models.IQTest;
 
 namespace ComputingServices.App
 {
@@ -244,7 +245,110 @@ namespace ComputingServices.App
 
         public IQTestStandardResult[] GetIQTestStandardResults(IQTestPaperResult[] paperResults)
         {
-            throw new NotImplementedException();
+            foreach(IQTestPaperResult paperResult in paperResults)
+            {
+                if (string.IsNullOrEmpty(paperResult.QuestionsSetCode))
+                {
+                    paperResult.QuestionsSetCode = "Default";
+                }
+            }
+
+            var questionsSetCodes = paperResults.Select(item => item.QuestionsSetCode).Distinct().ToList();
+            var ages = paperResults.Select(item => item.Age).Distinct().ToList();
+
+            List<IQTestQuestionsSet> questionsSets;
+            List<IQTestStandardParametersSet> standardParametersSets;
+            using (var context = new ComputingServicesContext())
+            {
+                questionsSets = context.IQTestQuestionsSets.Include(item => item.Questions).Where(item => questionsSetCodes.Contains(item.Code)).ToList();
+                standardParametersSets = context.IQTestStandardParametersSets.Include(item => item.Parameters).Where(item => ages.Any(age => age >= item.AgeMin && age <= item.AgeMax)).ToList();
+            }
+
+            List<IQTestStandardResult> standardResultList = new List<IQTestStandardResult>();
+
+            foreach (IQTestPaperResult paperResult in paperResults)
+            {
+                var questionsSet = questionsSets.Single(item => item.Code == paperResult.QuestionsSetCode);
+
+                var standardParametersSet = standardParametersSets.Single(item => paperResult.Age >= item.AgeMin && paperResult.Age <= item.AgeMax);
+
+                var standardResult = GetIQTestStandardResult(paperResult, questionsSet, standardParametersSet);
+
+                standardResultList.Add(standardResult);
+            }
+
+            return standardResultList.ToArray();
+        }
+
+        private IQTestStandardResult GetIQTestStandardResult(IQTestPaperResult paperResult, IQTestQuestionsSet questionsSet, IQTestStandardParametersSet standardParametersSet)
+        {
+            int originalValue = 0;
+            foreach (var questionAnswer in paperResult.QuestionAnswers)
+            {
+                var question = questionsSet.Questions.Single(item => item.Group == questionAnswer.QuestionGroup && item.Code == questionAnswer.QuestionCode);
+
+                if (question.CorrectChoice == questionAnswer.Answer)
+                {
+                    originalValue += 1;
+                }
+            }
+
+            IQTestStandardParameter standardParameter = standardParametersSet.Parameters.Where(item => originalValue >= item.OriginalScore).OrderByDescending(item => item.IQ).FirstOrDefault();
+            if (standardParameter == null)
+            {
+                standardParameter = standardParametersSet.Parameters.OrderBy(item => item.IQ).First();
+            }
+
+            int IQ = standardParameter.IQ;
+
+            IQLevel Level;
+            if(IQ >= 130)
+            {
+                Level = IQLevel.EXCELLENT;
+            }
+            else if(IQ >= 120)
+            {
+                Level = IQLevel.GREAT;
+            }
+            else if(IQ>=110)
+            {
+                Level = IQLevel.MEDIUM1;
+            }
+            else if(IQ>=90)
+            {
+                Level = IQLevel.MEDIUM2;
+            }
+            else if(IQ>=80)
+            {
+                Level = IQLevel.MEDIUM3;
+            }
+            else if(IQ>=70)
+            {
+                Level = IQLevel.EDGE;
+            }
+            else if(IQ>=55)
+            {
+                Level = IQLevel.BAD1;
+            }
+            else if(IQ>=40)
+            {
+                Level = IQLevel.BAD2;
+            }
+            else if(IQ>=25)
+            {
+                Level = IQLevel.BAD3;
+            }
+            else
+            {
+                Level = IQLevel.BAD4;
+            }
+
+            IQTestStandardResult standardResult = new IQTestStandardResult();
+            standardResult.Value = IQ;
+            standardResult.Level = Level;
+            standardResult.RefId = paperResult.RefId;
+
+            return standardResult;
         }
     }
 }
