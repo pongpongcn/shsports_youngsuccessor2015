@@ -17,6 +17,8 @@ namespace ComputingServices.Core.Infrastructure.Persistence
         private DbSet<PersonalityTestElementStandardParameter> PersonalityTestElementStandardParameters { get; set; }
         public DbSet<IQTestQuestionsSet> IQTestQuestionsSets { get; set; }
         private DbSet<IQTestQuestion> IQTestQuestions { get; set; }
+        public DbSet<IQTestStandardParametersSet> IQTestStandardParametersSets { get; set; }
+        private DbSet<IQTestStandardParameter> IQTestStandardParameters { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -43,6 +45,8 @@ namespace ComputingServices.Core.Infrastructure.Persistence
             modelBuilder.Entity<IQTestQuestionsSet>().HasMany(type => type.Questions).WithRequired();
 
             modelBuilder.Entity<IQTestQuestion>().Property(type => type.CorrectChoice).IsRequired();
+
+            modelBuilder.Entity<IQTestStandardParametersSet>().HasMany(type => type.Parameters).WithRequired();
         }
     }
 }

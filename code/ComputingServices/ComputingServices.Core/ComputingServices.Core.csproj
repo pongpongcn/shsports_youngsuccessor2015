@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\Models\IQTest\IQTestQuestionsSet.cs" />
+    <Compile Include="Domain\Models\IQTest\IQTestStandardParametersSet.cs" />
     <Compile Include="Domain\Models\PersonalityTest\PersonalityTestElementStandardParametersSet.cs" />
     <Compile Include="Domain\Models\PersonalityTest\PersonalityTestQuestionsSet.cs" />
     <Compile Include="Domain\Models\Shared\Gender.cs" />
