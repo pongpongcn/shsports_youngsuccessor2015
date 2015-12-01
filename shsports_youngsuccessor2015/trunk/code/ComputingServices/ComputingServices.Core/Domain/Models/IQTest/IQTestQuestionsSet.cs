@@ -20,14 +20,18 @@ namespace ComputingServices.Core.Domain.Models.IQTest
 
     public class IQTestQuestion
     {
-        public IQTestQuestion(string correctChoice)
+        public IQTestQuestion(string group, int code, string correctChoice)
         {
+            this.Group = group;
+            this.Code = code;
             this.CorrectChoice = correctChoice;
         }
 
         private IQTestQuestion() { }
 
         public int Id { get; private set; }
+        public string Group { get; private set; }
+        public int Code { get; private set; }
         public string CorrectChoice { get; private set; }
     }
 }
