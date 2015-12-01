@@ -1,10 +1,13 @@
 ﻿using ComputingServices.App.Models;
+using ComputingServices.Core.Domain.Models.PersonalityTest;
+using ComputingServices.Core.Infrastructure.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Data.Entity;
 
 namespace ComputingServices.App
 {
@@ -15,7 +18,61 @@ namespace ComputingServices.App
 
         public PersonalityTestElementStandardResult[] GetPersonalityTestElementStandardResults(PersonalityTestPaperResult[] paperResults)
         {
-            throw new NotImplementedException();
+            var questionsSetCodes = paperResults.Select(item=>item.QuestionsSetCode).Distinct().ToList();
+            var ages = paperResults.Select(item => item.Age).Distinct().ToList();
+
+            var dicQuestionsSet = new Dictionary<string, PersonalityTestQuestionsSet>();
+
+            using (var context = new ComputingServicesContext())
+            {
+                var questionsSets = context.PersonalityTestQuestionsSets.Include(item => item.Questions.Select(question => question.ChoiceScores)).Where(item => questionsSetCodes.Contains(item.Code));
+                foreach(var questionsSet in questionsSets)
+                {
+                    dicQuestionsSet.Add(questionsSet.Code, questionsSet);
+                }
+            }
+
+            List<PersonalityTestElementStandardResult> elementStandardResultList = new List<PersonalityTestElementStandardResult>();
+
+            foreach(PersonalityTestPaperResult paperResult in paperResults)
+            {
+                var questionsSet = dicQuestionsSet[paperResult.QuestionsSetCode];
+
+                var elementStandardResult = GetPersonalityTestElementStandardResult(paperResult, questionsSet);
+
+                elementStandardResultList.Add(elementStandardResult);
+            }
+
+            return elementStandardResultList.ToArray();
+        }
+
+        private PersonalityTestElementStandardResult GetPersonalityTestElementStandardResult(PersonalityTestPaperResult paperResult, PersonalityTestQuestionsSet questionsSet)
+        {
+            var dicElementOriginalValue = new Dictionary<App.Models.PersonalityElement, int>();
+            foreach (var questionAnswer in paperResult.QuestionAnswers)
+            {
+                var question = questionsSet.Questions.Single(item => item.Code == questionAnswer.QuestionCode);
+
+                App.Models.PersonalityElement element;
+                if (!Enum.TryParse<App.Models.PersonalityElement>(question.Element.ToString(), out element))
+                {
+                    break;
+                }
+                if (!dicElementOriginalValue.ContainsKey(element))
+                {
+                    dicElementOriginalValue.Add(element, 0);
+                }
+
+                foreach(var choiceScore in question.ChoiceScores)
+                {
+                    if(choiceScore.Choice == questionAnswer.Answer)
+                    {
+                        dicElementOriginalValue[element] += choiceScore.Score;
+                        break;
+                    }
+                }
+            }
+            return null;
         }
 
 
