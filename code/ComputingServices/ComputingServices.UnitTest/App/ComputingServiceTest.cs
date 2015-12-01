@@ -27,5 +27,20 @@ namespace ComputingServices.UnitTest.App
 
             var actual = target.GetPersonalityTestElementStandardResults(new PersonalityTestPaperResult[] { paperResult });
         }
+
+        [TestMethod]
+        public void TestGetIQTestStandardResults()
+        {
+            IComputingService target = new ComputingService();
+
+            IQTestPaperResult paperResult = new IQTestPaperResult();
+            paperResult.Age = 8;
+            paperResult.QuestionAnswers = new IQTestPaperQuestionAnswer[]{
+                new IQTestPaperQuestionAnswer{ QuestionGroup="A",QuestionCode=2, Answer="E"},
+                new IQTestPaperQuestionAnswer{ QuestionGroup="AB",QuestionCode=4, Answer="F"}
+            };
+
+            var actual = target.GetIQTestStandardResults(new IQTestPaperResult[] { paperResult });
+        }
     }
 }
