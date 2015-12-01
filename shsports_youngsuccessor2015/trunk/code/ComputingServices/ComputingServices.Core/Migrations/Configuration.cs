@@ -10,6 +10,7 @@ namespace ComputingServices.Core.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(ComputingServices.Core.Infrastructure.Persistence.ComputingServicesContext context)

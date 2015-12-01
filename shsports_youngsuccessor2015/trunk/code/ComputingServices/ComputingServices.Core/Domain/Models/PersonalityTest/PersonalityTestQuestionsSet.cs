@@ -24,7 +24,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
         public PersonalityTestQuestion(int code, PersonalityElement element)
         {
             this.Code = code;
-            this.ElementString = element.ToString();
+            this.Element = element;
             this.ChoiceScores = new HashSet<PersonalityTestQuestionChoiceScore>();
         }
         private PersonalityTestQuestion() { }
@@ -51,6 +51,10 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
                 {
                     throw new ArgumentException("Invalid Element");
                 }
+            }
+            set
+            {
+                this.ElementString = value.ToString();
             }
         }
 
