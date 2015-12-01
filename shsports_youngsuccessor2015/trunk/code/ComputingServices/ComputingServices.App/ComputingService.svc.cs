@@ -129,7 +129,117 @@ namespace ComputingServices.App
 
         public PersonalityTestComplexResult[] GetPersonalityTestComplexResults(PersonalityTestElementStandardResult[] standardResults)
         {
-            throw new NotImplementedException();
+            return standardResults.Select(item => GetPersonalityTestComplexResult(item)).ToArray();
+        }
+
+        private PersonalityTestComplexResult GetPersonalityTestComplexResult(PersonalityTestElementStandardResult standardResult)
+        {
+            List<PersonalityTestComplexScore> scores = new List<PersonalityTestComplexScore>();
+
+            Dictionary<App.Models.PersonalityElement, int> dicElementValue = new Dictionary<Models.PersonalityElement, int>();
+            foreach (var score in standardResult.Scores)
+            {
+                dicElementValue.Add(score.Element, score.Value);
+            }
+
+            #region A1
+            {
+                PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                score.Category = PersonalityComplexCategory.A1;
+                score.Value = ((38 + 2 * dicElementValue[Models.PersonalityElement.L] + 3 * dicElementValue[Models.PersonalityElement.O] + 4 * dicElementValue[Models.PersonalityElement.Q1]) - (2 * dicElementValue[Models.PersonalityElement.C] + 2 * dicElementValue[Models.PersonalityElement.H] + 2 * dicElementValue[Models.PersonalityElement.Q2])) / 10;
+
+                scores.Add(score);
+            }
+            #endregion
+
+            #region A2
+            {
+                PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                score.Category = PersonalityComplexCategory.A2;
+                score.Value = ((2*dicElementValue[Models.PersonalityElement.A]+3*dicElementValue[Models.PersonalityElement.E]+4*dicElementValue[Models.PersonalityElement.F]+5*dicElementValue[Models.PersonalityElement.H])-(2*dicElementValue[Models.PersonalityElement.Q2]+11))/10;
+
+                scores.Add(score);
+            }
+            #endregion
+
+            #region A3
+            {
+                PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                score.Category = PersonalityComplexCategory.A3;
+                score.Value = ((77 + 2 * dicElementValue[Models.PersonalityElement.C] + 2 * dicElementValue[Models.PersonalityElement.E] + 2 * dicElementValue[Models.PersonalityElement.F] + 2 * dicElementValue[Models.PersonalityElement.N]) - (4 * dicElementValue[Models.PersonalityElement.A] + 6 * dicElementValue[Models.PersonalityElement.I] + 2 * dicElementValue[Models.PersonalityElement.M])) / 10;
+
+                scores.Add(score);
+            }
+            #endregion
+
+            #region A3
+            {
+                PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                score.Category = PersonalityComplexCategory.A3;
+                score.Value = ((77 + 2 * dicElementValue[Models.PersonalityElement.C] + 2 * dicElementValue[Models.PersonalityElement.E] + 2 * dicElementValue[Models.PersonalityElement.F] + 2 * dicElementValue[Models.PersonalityElement.N]) - (4 * dicElementValue[Models.PersonalityElement.A] + 6 * dicElementValue[Models.PersonalityElement.I] + 2 * dicElementValue[Models.PersonalityElement.M])) / 10;
+
+                scores.Add(score);
+            }
+            #endregion
+
+            #region A4
+            {
+                PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                score.Category = PersonalityComplexCategory.A4;
+                score.Value = ((4*dicElementValue[Models.PersonalityElement.E]+3*dicElementValue[Models.PersonalityElement.M]+4*dicElementValue[Models.PersonalityElement.Q1]+4*dicElementValue[Models.PersonalityElement.Q2])-(3*dicElementValue[Models.PersonalityElement.A]+2*dicElementValue[Models.PersonalityElement.G]))/10;
+
+                scores.Add(score);
+            }
+            #endregion
+
+            if(standardResult.Age > 14)
+            {
+                #region B1
+                {
+                    PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                    score.Category = PersonalityComplexCategory.B1;
+                    score.Value = dicElementValue[Models.PersonalityElement.C] + dicElementValue[Models.PersonalityElement.F] + (11 - dicElementValue[Models.PersonalityElement.O]) + (11 - dicElementValue[Models.PersonalityElement.Q4]);
+
+                    scores.Add(score);
+                }
+                #endregion
+
+                #region B2
+                {
+                    PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                    score.Category = PersonalityComplexCategory.B2;
+                    score.Value = dicElementValue[Models.PersonalityElement.Q3]*2+dicElementValue[Models.PersonalityElement.G]*2+dicElementValue[Models.PersonalityElement.C]*2+dicElementValue[Models.PersonalityElement.E]+dicElementValue[Models.PersonalityElement.N]+dicElementValue[Models.PersonalityElement.Q2]+dicElementValue[Models.PersonalityElement.Q1];
+
+                    scores.Add(score);
+                }
+                #endregion
+
+                #region B3
+                {
+                    PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                    score.Category = PersonalityComplexCategory.B3;
+                    score.Value = (11-dicElementValue[Models.PersonalityElement.A])*2+dicElementValue[Models.PersonalityElement.B]*2+dicElementValue[Models.PersonalityElement.E]+(11-dicElementValue[Models.PersonalityElement.F])*2+dicElementValue[Models.PersonalityElement.H]+dicElementValue[Models.PersonalityElement.I]*2+dicElementValue[Models.PersonalityElement.M]+(11-dicElementValue[Models.PersonalityElement.N])+dicElementValue[Models.PersonalityElement.Q1]+dicElementValue[Models.PersonalityElement.Q3]*2;
+
+                    scores.Add(score);
+                }
+                #endregion
+
+                #region B4
+                {
+                    PersonalityTestComplexScore score = new PersonalityTestComplexScore();
+                    score.Category = PersonalityComplexCategory.B4;
+                    score.Value = dicElementValue[Models.PersonalityElement.B]+dicElementValue[Models.PersonalityElement.G]+dicElementValue[Models.PersonalityElement.Q1]+(11-dicElementValue[Models.PersonalityElement.F]);
+
+                    scores.Add(score);
+                }
+                #endregion
+            }
+
+            PersonalityTestComplexResult complexResult = new PersonalityTestComplexResult();
+            complexResult.Scores = scores.ToArray();
+            complexResult.RefId = standardResult.RefId;
+
+            return complexResult;
         }
 
         public IQTestStandardResult[] GetIQTestStandardResults(IQTestPaperResult[] paperResults)
