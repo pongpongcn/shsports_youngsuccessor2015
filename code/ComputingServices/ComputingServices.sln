@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A429A6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputingServices.App", "ComputingServices.App\ComputingServices.App.csproj", "{D2DEEFB1-3212-4E37-9EA5-29CA5E5C0789}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputingServices.Core", "ComputingServices.Core\ComputingServices.Core.csproj", "{1301F55E-3D42-4285-9DF1-96D4FD9EA320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputingServices.UnitTest", "ComputingServices.UnitTest\ComputingServices.UnitTest.csproj", "{0CC6CFF6-99FC-4EE0-80F6-08C6817AB585}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -26,6 +30,14 @@ Global
 		{D2DEEFB1-3212-4E37-9EA5-29CA5E5C0789}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2DEEFB1-3212-4E37-9EA5-29CA5E5C0789}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2DEEFB1-3212-4E37-9EA5-29CA5E5C0789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1301F55E-3D42-4285-9DF1-96D4FD9EA320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1301F55E-3D42-4285-9DF1-96D4FD9EA320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1301F55E-3D42-4285-9DF1-96D4FD9EA320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1301F55E-3D42-4285-9DF1-96D4FD9EA320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CC6CFF6-99FC-4EE0-80F6-08C6817AB585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CC6CFF6-99FC-4EE0-80F6-08C6817AB585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CC6CFF6-99FC-4EE0-80F6-08C6817AB585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CC6CFF6-99FC-4EE0-80F6-08C6817AB585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
