@@ -7,10 +7,10 @@ using System.Web;
 namespace ComputingServices.App.Models
 {
     /// <summary>
-    /// 个性测试中因素标准分（基于单张问卷）
+    /// 认知测试中原始答题结果（基于单张问卷）
     /// </summary>
     [DataContract]
-    public class PersonalityTestElementStandardResult
+    public class IQTestPaperResult
     {
     }
 }

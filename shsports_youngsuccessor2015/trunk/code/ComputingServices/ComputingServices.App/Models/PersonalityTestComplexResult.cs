@@ -7,10 +7,10 @@ using System.Web;
 namespace ComputingServices.App.Models
 {
     /// <summary>
-    /// 个性测试中因素标准分（基于单张问卷）
+    /// 个性测试中基于多因素标准分得出的综合评价
     /// </summary>
     [DataContract]
-    public class PersonalityTestElementStandardResult
+    public class PersonalityTestComplexResult
     {
     }
 }
