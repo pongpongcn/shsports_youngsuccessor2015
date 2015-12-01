@@ -21,24 +21,25 @@ namespace ComputingServices.App
             var questionsSetCodes = paperResults.Select(item=>item.QuestionsSetCode).Distinct().ToList();
             var ages = paperResults.Select(item => item.Age).Distinct().ToList();
 
-            var dicQuestionsSet = new Dictionary<string, PersonalityTestQuestionsSet>();
-
+            List<PersonalityTestQuestionsSet> questionsSets;
+            List<PersonalityTestElementStandardParametersSet> elementStandardParametersSets;
             using (var context = new ComputingServicesContext())
             {
-                var questionsSets = context.PersonalityTestQuestionsSets.Include(item => item.Questions.Select(question => question.ChoiceScores)).Where(item => questionsSetCodes.Contains(item.Code));
-                foreach(var questionsSet in questionsSets)
-                {
-                    dicQuestionsSet.Add(questionsSet.Code, questionsSet);
-                }
+                questionsSets = context.PersonalityTestQuestionsSets.Include(item => item.Questions.Select(question => question.ChoiceScores)).Where(item => questionsSetCodes.Contains(item.Code)).ToList();
+                elementStandardParametersSets = context.PersonalityTestElementStandardParametersSets.Include(item => item.Parameters).Where(item => ages.Any(age => age >= item.AgeMin && age <= item.AgeMax)).ToList();
             }
 
             List<PersonalityTestElementStandardResult> elementStandardResultList = new List<PersonalityTestElementStandardResult>();
 
             foreach(PersonalityTestPaperResult paperResult in paperResults)
             {
-                var questionsSet = dicQuestionsSet[paperResult.QuestionsSetCode];
+                var questionsSet = questionsSets.Single(item=>item.Code == paperResult.QuestionsSetCode);
 
-                var elementStandardResult = GetPersonalityTestElementStandardResult(paperResult, questionsSet);
+                Core.Domain.Models.Shared.Gender gender = ConvertToDomain(paperResult.Gender);
+
+                var elementStandardParametersSet = elementStandardParametersSets.Single(item => item.Gender == gender && paperResult.Age >= item.AgeMin && paperResult.Age <= item.AgeMax);
+
+                var elementStandardResult = GetPersonalityTestElementStandardResult(paperResult, questionsSet, elementStandardParametersSet);
 
                 elementStandardResultList.Add(elementStandardResult);
             }
@@ -46,15 +47,15 @@ namespace ComputingServices.App
             return elementStandardResultList.ToArray();
         }
 
-        private PersonalityTestElementStandardResult GetPersonalityTestElementStandardResult(PersonalityTestPaperResult paperResult, PersonalityTestQuestionsSet questionsSet)
+        private PersonalityTestElementStandardResult GetPersonalityTestElementStandardResult(PersonalityTestPaperResult paperResult, PersonalityTestQuestionsSet questionsSet, PersonalityTestElementStandardParametersSet elementStandardParametersSet)
         {
-            var dicElementOriginalValue = new Dictionary<App.Models.PersonalityElement, int>();
+            var dicElementOriginalValue = new Dictionary<Core.Domain.Models.PersonalityTest.PersonalityElement, int>();
             foreach (var questionAnswer in paperResult.QuestionAnswers)
             {
                 var question = questionsSet.Questions.Single(item => item.Code == questionAnswer.QuestionCode);
 
-                App.Models.PersonalityElement element;
-                if (!Enum.TryParse<App.Models.PersonalityElement>(question.Element.ToString(), out element))
+                Core.Domain.Models.PersonalityTest.PersonalityElement element;
+                if (!Enum.TryParse<Core.Domain.Models.PersonalityTest.PersonalityElement>(question.Element.ToString(), out element))
                 {
                     break;
                 }
@@ -72,9 +73,59 @@ namespace ComputingServices.App
                     }
                 }
             }
-            return null;
+
+            var elementStandardScoreList = new List<PersonalityTestElementStandardScore>();
+
+            foreach (Core.Domain.Models.PersonalityTest.PersonalityElement element in dicElementOriginalValue.Keys)
+            {
+                int originalValue = dicElementOriginalValue[element];
+
+                PersonalityTestElementStandardParameter elementStandardParameter = elementStandardParametersSet.Parameters.Single(item => item.Element == element);
+
+                int standardScoreValue = decimal.ToInt32((Convert.ToDecimal(originalValue) - elementStandardParameter.ParameterX) / elementStandardParameter.ParameterS);
+
+                PersonalityTestElementStandardScore elementStandardScore = new PersonalityTestElementStandardScore();
+                App.Models.PersonalityElement appElement;
+                if (Enum.TryParse<App.Models.PersonalityElement>(element.ToString(), out appElement))
+                {
+                    elementStandardScore.Element = appElement;
+                    elementStandardScore.Value = standardScoreValue;
+
+                    elementStandardScoreList.Add(elementStandardScore);
+                }
+                else
+                {
+                    throw new ArgumentException("Wrong Personality Element");
+                }
+            }
+
+            PersonalityTestElementStandardResult elementStandardResult = new PersonalityTestElementStandardResult();
+            elementStandardResult.Age = paperResult.Age;
+            elementStandardResult.Scores = elementStandardScoreList.ToArray();
+            elementStandardResult.RefId = paperResult.RefId;
+
+            return elementStandardResult;
         }
 
+        private Core.Domain.Models.Shared.Gender ConvertToDomain(Gender appGender)
+        {
+            switch(appGender)
+            {
+                case Gender.MALE: return Core.Domain.Models.Shared.Gender.Male; 
+                case Gender.FEMALE: return Core.Domain.Models.Shared.Gender.Female;
+                default: throw new ArgumentException("Can not mapping to domain gender.");
+            }
+        }
+
+        private Gender ConvertToApp(Core.Domain.Models.Shared.Gender domainGender)
+        {
+            switch (domainGender)
+            {
+                case Core.Domain.Models.Shared.Gender.Male: return Gender.MALE;
+                case Core.Domain.Models.Shared.Gender.Female: return Gender.FEMALE;
+                default: throw new ArgumentException("Can not mapping to app gender.");
+            }
+        }
 
         public PersonalityTestComplexResult[] GetPersonalityTestComplexResults(PersonalityTestElementStandardResult[] standardResults)
         {

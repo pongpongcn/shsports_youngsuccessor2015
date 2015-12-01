@@ -14,8 +14,8 @@ namespace ComputingServices.UnitTest.App
             IComputingService target = new ComputingService();
 
             PersonalityTestPaperResult paperResult = new PersonalityTestPaperResult();
-            paperResult.Age = 12;
-            paperResult.Gender = Gender.FEMALE;
+            paperResult.Age = 10;
+            paperResult.Gender = Gender.MALE;
             paperResult.QuestionsSetCode = "Set1";
             paperResult.QuestionAnswers = new PersonalityTestPaperQuestionAnswer[]{
                 new PersonalityTestPaperQuestionAnswer { QuestionCode = 3, Answer = "A" }, 
@@ -25,7 +25,7 @@ namespace ComputingServices.UnitTest.App
                 new PersonalityTestPaperQuestionAnswer { QuestionCode = 54, Answer = "A" }
             };
 
-            target.GetPersonalityTestElementStandardResults(new PersonalityTestPaperResult[] { paperResult });
+            var actual = target.GetPersonalityTestElementStandardResults(new PersonalityTestPaperResult[] { paperResult });
         }
     }
 }

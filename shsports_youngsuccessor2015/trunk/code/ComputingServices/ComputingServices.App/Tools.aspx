@@ -10,7 +10,8 @@
 <body>
     <form runat="server">
     <div>
-        <asp:Button ID="btnImportQuestionsSet" runat="server" Text="导入QuestionsSet" OnClick="btnImportQuestionsSet_Click" />
+        <asp:Button ID="btnImportPersonalityTestQuestionsSet" runat="server" Text="导入个性测试题目及答案" OnClick="btnImportPersonalityTestQuestionsSet_Click" />
+        <asp:Button ID="btnImportPersonalityTestElementStandardParametersSet" runat="server" Text="导入个性测试16种人格因素常模" OnClick="btnImportPersonalityTestElementStandardParametersSet_Click" />
     </div>
     <asp:Literal ID="ltlLog" runat="server" EnableViewState="false" />
     </form>

@@ -13,13 +13,22 @@ namespace ComputingServices.App {
     public partial class Tools {
         
         /// <summary>
-        /// btnImportQuestionsSet 控件。
+        /// btnImportPersonalityTestQuestionsSet 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImportQuestionsSet;
+        protected global::System.Web.UI.WebControls.Button btnImportPersonalityTestQuestionsSet;
+        
+        /// <summary>
+        /// btnImportPersonalityTestElementStandardParametersSet 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnImportPersonalityTestElementStandardParametersSet;
         
         /// <summary>
         /// ltlLog 控件。
