@@ -17,5 +17,16 @@ namespace ComputingServices.App
         {
             throw new NotImplementedException();
         }
+
+
+        public PersonalityTestComplexResult[] GetPersonalityTestComplexResults(PersonalityTestElementStandardResult[] standardResults)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQTestStandardResult[] GetIQTestStandardResults(IQTestPaperResult[] paperResults)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -71,8 +71,11 @@
     <Compile Include="Models\ChildArea.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IQLevel.cs" />
+    <Compile Include="Models\IQTestPaperResult.cs" />
+    <Compile Include="Models\IQTestStandardResult.cs" />
     <Compile Include="Models\PersonalityComplexCategory.cs" />
     <Compile Include="Models\PersonalityElement.cs" />
+    <Compile Include="Models\PersonalityTestComplexResult.cs" />
     <Compile Include="Models\PersonalityTestElementStandardResult.cs" />
     <Compile Include="Models\PersonalityTestPaperResult.cs" />
     <Compile Include="SampleService.svc.cs">
