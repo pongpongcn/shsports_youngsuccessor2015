@@ -204,7 +204,58 @@ namespace ComputingServices.App
 
         protected void btnImportIQTestStandardParametersSet_Click(object sender, EventArgs e)
         {
+            List<IQTestStandardParametersSet> parametersSetList = new List<IQTestStandardParametersSet>();
 
+            string dataDirectoryPath = MapPath("~/App_Data/IQTest");
+            string[] dataFilePaths = Directory.GetFiles(dataDirectoryPath, "IQTestStandardParametersSet*.xml");
+
+            foreach (string dataFilePath in dataFilePaths)
+            {
+                XmlDocument xd = new XmlDocument();
+                xd.Load(dataFilePath);
+
+                XmlElement xeElementStandardParametersSet = (XmlElement)xd.SelectSingleNode("StandardParametersSet");
+                int ageMin = int.Parse(xeElementStandardParametersSet.GetAttribute("AgeMin"));
+                int ageMax = int.Parse(xeElementStandardParametersSet.GetAttribute("AgeMax"));
+
+                IQTestStandardParametersSet parametersSet = new IQTestStandardParametersSet(ageMin, ageMax);
+
+                foreach (XmlNode xnParameter in xeElementStandardParametersSet.SelectNodes("Parameter"))
+                {
+                    XmlElement xeParameter = (XmlElement)xnParameter;
+
+                    int originalScore = int.Parse(xeParameter.GetAttribute("OriginalScore"));
+                    int IQ = int.Parse(xeParameter.GetAttribute("IQ"));
+
+                    IQTestStandardParameter standardParameter = new IQTestStandardParameter(originalScore, IQ);
+                    parametersSet.Parameters.Add(standardParameter);
+                }
+
+                parametersSetList.Add(parametersSet);
+            }
+
+            if (parametersSetList.Count > 0)
+            {
+                using (var context = new ComputingServicesContext())
+                {
+                    foreach (var parametersSet in parametersSetList)
+                    {
+                        var oldStandardParametersSet = context.IQTestStandardParametersSets.Where(item => item.AgeMin == parametersSet.AgeMin && item.AgeMax == parametersSet.AgeMax).SingleOrDefault();
+                        if (oldStandardParametersSet != null)
+                        {
+                            context.IQTestStandardParametersSets.Remove(oldStandardParametersSet);
+                        }
+                        context.IQTestStandardParametersSets.Add(parametersSet);
+                    }
+                    context.SaveChanges();
+                }
+
+                ltlLog.Text = "成功完成。";
+            }
+            else
+            {
+                ltlLog.Text = "没有数据。";
+            }
         }
     }
 }
