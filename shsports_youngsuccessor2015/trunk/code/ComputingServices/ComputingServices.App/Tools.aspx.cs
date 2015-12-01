@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Xml;
 using ComputingServices.Core.Domain.Models.PersonalityTest;
+using ComputingServices.Core.Domain.Models.IQTest;
 
 namespace ComputingServices.App
 {
@@ -143,6 +144,67 @@ namespace ComputingServices.App
             {
                 ltlLog.Text = "没有数据。";
             }
+        }
+
+        protected void btnImportIQTestQuestionsSet_Click(object sender, EventArgs e)
+        {
+            List<IQTestQuestionsSet> questionsSetList = new List<IQTestQuestionsSet>();
+
+            string dataDirectoryPath = MapPath("~/App_Data/IQTest");
+            string[] dataFilePaths = Directory.GetFiles(dataDirectoryPath, "IQTestQuestionsSet*.xml");
+
+            foreach (string dataFilePath in dataFilePaths)
+            {
+                XmlDocument xd = new XmlDocument();
+                xd.Load(dataFilePath);
+
+                XmlElement xeQuestionsSet = (XmlElement)xd.SelectSingleNode("QuestionsSet");
+                string questionsSetCode = xeQuestionsSet.GetAttribute("Code");
+
+                IQTestQuestionsSet questionsSet = new IQTestQuestionsSet(questionsSetCode);
+
+                foreach (XmlNode xnQuestion in xeQuestionsSet.SelectNodes("Question"))
+                {
+                    XmlElement xeQuestion = (XmlElement)xnQuestion;
+
+                    string group = xeQuestion.GetAttribute("Group");
+                    int code = int.Parse(xeQuestion.GetAttribute("Code"));
+                    string correctChoice = xeQuestion.GetAttribute("CorrectChoice");
+
+                    IQTestQuestion question = new IQTestQuestion(group, code, correctChoice);
+                    questionsSet.Questions.Add(question);
+                }
+
+                questionsSetList.Add(questionsSet);
+            }
+
+            if (questionsSetList.Count > 0)
+            {
+                using (var context = new ComputingServicesContext())
+                {
+                    foreach (var questionsSet in questionsSetList)
+                    {
+                        var oldQuestionsSet = context.IQTestQuestionsSets.Where(item => item.Code == questionsSet.Code).SingleOrDefault();
+                        if (oldQuestionsSet != null)
+                        {
+                            context.IQTestQuestionsSets.Remove(oldQuestionsSet);
+                        }
+                        context.IQTestQuestionsSets.Add(questionsSet);
+                    }
+                    context.SaveChanges();
+                }
+
+                ltlLog.Text = "成功完成。";
+            }
+            else
+            {
+                ltlLog.Text = "没有数据。";
+            }
+        }
+
+        protected void btnImportIQTestStandardParametersSet_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
