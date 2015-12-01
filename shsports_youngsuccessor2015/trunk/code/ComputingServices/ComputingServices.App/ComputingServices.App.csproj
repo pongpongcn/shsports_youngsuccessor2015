@@ -59,10 +59,20 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PersonalityTestService.svc" />
     <Content Include="SampleService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPersonalityTestService.cs" />
+    <Compile Include="Models\ChildArea.cs" />
+    <Compile Include="Models\Gender.cs" />
+    <Compile Include="Models\IQLevel.cs" />
+    <Compile Include="Models\PersonalityComplexCategory.cs" />
+    <Compile Include="Models\PersonalityElement.cs" />
+    <Compile Include="PersonalityTestService.svc.cs">
+      <DependentUpon>PersonalityTestService.svc</DependentUpon>
+    </Compile>
     <Compile Include="SampleService.svc.cs">
       <DependentUpon>SampleService.svc</DependentUpon>
     </Compile>
