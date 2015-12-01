@@ -12,6 +12,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
             this.Code = code;
             this.Questions = new HashSet<PersonalityTestQuestion>();
         }
+        private PersonalityTestQuestionsSet() { }
 
         public int Id { get; private set; }
         public string Code { get; private set; }
