@@ -34,6 +34,8 @@ namespace ComputingServices.App.Models
         [EnumMember]
         I,
         [EnumMember]
+        J,
+        [EnumMember]
         L,
         [EnumMember]
         M,

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ElementStandardParametersSet Name="12-14岁儿童女" AgeMin="12" AgeMax="14" Gender="Female">
+  <Parameter Element="A" X="6.31" S="1.68" />
+  <Parameter Element="B" X="5.55" S="1.43" />
+  <Parameter Element="C" X="6.9" S="1.99" />
+  <Parameter Element="D" X="4.18" S="1.81" />
+  <Parameter Element="E" X="6" S="1.71" />
+  <Parameter Element="F" X="6.18" S="1.63" />
+  <Parameter Element="G" X="6.11" S="1.82" />
+  <Parameter Element="H" X="5.94" S="1.85" />
+  <Parameter Element="I" X="4.7" S="1.48" />
+  <Parameter Element="J" X="5.01" S="1.47" />
+  <Parameter Element="N" X="5.43" S="1.47" />
+  <Parameter Element="O" X="3.59" S="1.69" />
+  <Parameter Element="Q3" X="6.94" S="2.14" />
+  <Parameter Element="Q4" X="3.44" S="1.91" />
+</ElementStandardParametersSet>

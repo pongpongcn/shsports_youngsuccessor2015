@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ElementStandardParametersSet Name="8-11岁儿女男" AgeMin="8" AgeMax="11" Gender="Female">
+  <Parameter Element="A" X="6.36" S="1.63" />
+  <Parameter Element="B" X="4.83" S="1.59" />
+  <Parameter Element="C" X="6.68" S="2" />
+  <Parameter Element="D" X="3.79" S="1.99" />
+  <Parameter Element="E" X="5.46" S="1.66" />
+  <Parameter Element="F" X="5.85" S="1.57" />
+  <Parameter Element="G" X="6.42" S="1.82" />
+  <Parameter Element="H" X="6.15" S="1.74" />
+  <Parameter Element="I" X="5.17" S="1.51" />
+  <Parameter Element="J" X="4.86" S="1.54" />
+  <Parameter Element="N" X="4.54" S="1.65" />
+  <Parameter Element="O" X="3.67" S="1.74" />
+  <Parameter Element="Q3" X="7.45" S="2.33" />
+  <Parameter Element="Q4" X="3.05" S="1.93" />
+</ElementStandardParametersSet>
