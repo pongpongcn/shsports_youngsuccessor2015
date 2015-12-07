@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ElementStandardParametersSet Name="19岁以上大学生男" AgeMin="19" AgeMax="60" Gender="Male">
+  <Parameter Element="A" X="10.15" S="3.56" />
+  <Parameter Element="B" X="8.96" S="2.12" />
+  <Parameter Element="C" X="15.04" S="3.7" />
+  <Parameter Element="E" X="14.09" S="3.98" />
+  <Parameter Element="F" X="14.03" S="4.7" />
+  <Parameter Element="G" X="12.41" S="3.28" />
+  <Parameter Element="H" X="11.94" S="4.8" />
+  <Parameter Element="I" X="10.68" S="3.08" />
+  <Parameter Element="L" X="10.08" S="3.35" />
+  <Parameter Element="M" X="12.25" S="3.06" />
+  <Parameter Element="N" X="9.48" S="2.46" />
+  <Parameter Element="O" X="7.96" S="3.91" />
+  <Parameter Element="Q1" X="12.44" S="2.61" />
+  <Parameter Element="Q2" X="12.96" S="3.32" />
+  <Parameter Element="Q3" X="11.76" S="3.29" />
+  <Parameter Element="Q4" X="11.36" S="4" />
+</ElementStandardParametersSet>

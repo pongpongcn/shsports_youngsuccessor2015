@@ -53,12 +53,16 @@ namespace ComputingServices.App
             var dicElementOriginalValue = new Dictionary<Core.Domain.Models.PersonalityTest.PersonalityElement, int>();
             foreach (var questionAnswer in paperResult.QuestionAnswers)
             {
-                var question = questionsSet.Questions.Single(item => item.Code == questionAnswer.QuestionCode);
+                var question = questionsSet.Questions.SingleOrDefault(item => item.Code == questionAnswer.QuestionCode);
+                if(question == null)
+                {
+                    continue;
+                }
 
                 Core.Domain.Models.PersonalityTest.PersonalityElement element;
                 if (!Enum.TryParse<Core.Domain.Models.PersonalityTest.PersonalityElement>(question.Element.ToString(), out element))
                 {
-                    break;
+                    throw new ArgumentException("Wrong Personality Element");
                 }
                 if (!dicElementOriginalValue.ContainsKey(element))
                 {

@@ -32,7 +32,7 @@ namespace ComputingServices.App
         /// 认知测试计算阶段1-3，根据原始答题结果获得IQ值与类别
         /// </summary>
         /// <param name="paperResults">原始答题结果</param>
-        /// <returns>IIQ值与类别</returns>
+        /// <returns>IQ值与类别</returns>
         [OperationContract]
         IQTestStandardResult[] GetIQTestStandardResults(IQTestPaperResult[] paperResults);
     }

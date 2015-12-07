@@ -72,9 +72,16 @@
   <ItemGroup>
     <Content Include="App_Data\IQTest\IQTestQuestionsSet.xml" />
     <Content Include="App_Data\IQTest\IQTestStandardParametersSet_8-8.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_12-14_Female.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_12-14_Male.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_15-18_Female.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_15-18_Male.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_19_Female.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_19_Male.xml" />
+    <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_8-11_Female.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_8-11_Male.xml" />
-    <Content Include="App_Data\PersonalityTest\QuestionsSet1.xml" />
+    <Content Include="App_Data\PersonalityTest\QuestionsSet_16PF.xml" />
+    <Content Include="App_Data\PersonalityTest\QuestionsSet_CPQ.xml" />
     <Content Include="ComputingService.svc" />
     <Content Include="Tools.aspx" />
     <Content Include="Web.config" />
