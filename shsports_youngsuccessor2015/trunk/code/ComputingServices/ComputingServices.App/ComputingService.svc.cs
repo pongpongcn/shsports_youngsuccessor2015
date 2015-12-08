@@ -27,7 +27,7 @@ namespace ComputingServices.App
             using (var context = new ComputingServicesContext())
             {
                 questionsSets = context.PersonalityTestQuestionsSets.Include(item => item.Questions.Select(question => question.ChoiceScores)).Where(item => questionsSetCodes.Contains(item.Code)).ToList();
-                elementStandardParametersSets = context.PersonalityTestElementStandardParametersSets.Include(item => item.Parameters).Where(item => ages.Any(age => age >= item.AgeMin && age <= item.AgeMax)).ToList();
+                elementStandardParametersSets = context.PersonalityTestElementStandardParametersSets.Include(item => item.Parameters.Select(parameter => parameter.Segments)).Where(item => ages.Any(age => age >= item.AgeMin && age <= item.AgeMax)).ToList();
             }
 
             List<PersonalityTestElementStandardResult> elementStandardResultList = new List<PersonalityTestElementStandardResult>();
@@ -87,7 +87,7 @@ namespace ComputingServices.App
 
                 PersonalityTestElementStandardParameter elementStandardParameter = elementStandardParametersSet.Parameters.Single(item => item.Element == element);
 
-                int standardScoreValue = decimal.ToInt32((Convert.ToDecimal(originalValue) - elementStandardParameter.ParameterX) / elementStandardParameter.ParameterS);
+                int standardScoreValue = elementStandardParameter.Segments.Single(item => originalValue >= item.OriginalScoreMin && originalValue <= item.OriginalScoreMax).StandardScore;
 
                 PersonalityTestElementStandardScore elementStandardScore = new PersonalityTestElementStandardScore();
                 App.Models.PersonalityElement appElement;

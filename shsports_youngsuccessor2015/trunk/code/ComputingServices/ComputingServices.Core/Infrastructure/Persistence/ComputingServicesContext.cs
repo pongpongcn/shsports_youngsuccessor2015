@@ -40,6 +40,7 @@ namespace ComputingServices.Core.Infrastructure.Persistence
 
             modelBuilder.Entity<PersonalityTestElementStandardParameter>().Ignore(type => type.Element);
             modelBuilder.Entity<PersonalityTestElementStandardParameter>().Property(type => type.ElementString).IsRequired().HasColumnName("Element");
+            modelBuilder.Entity<PersonalityTestElementStandardParameter>().HasMany(type => type.Segments).WithRequired();
 
             modelBuilder.Entity<IQTestQuestionsSet>().Property(type => type.Code).IsRequired();
             modelBuilder.Entity<IQTestQuestionsSet>().HasMany(type => type.Questions).WithRequired();

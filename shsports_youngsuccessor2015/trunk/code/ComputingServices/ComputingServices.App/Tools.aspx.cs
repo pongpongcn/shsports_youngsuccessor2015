@@ -116,6 +116,20 @@ namespace ComputingServices.App
                     decimal parameterS = decimal.Parse(xeParameter.GetAttribute("S"));
 
                     PersonalityTestElementStandardParameter elementStandardParameter = new PersonalityTestElementStandardParameter(element, parameterX, parameterS);
+
+                    foreach (XmlNode xnSegment in xeParameter.SelectNodes("Segment"))
+                    {
+                        XmlElement xeSegment = (XmlElement)xnSegment;
+
+                        int originalScoreMin = int.Parse(xeSegment.GetAttribute("OriginalScoreMin"));
+                        int originalScoreMax = int.Parse(xeSegment.GetAttribute("OriginalScoreMax"));
+                        int standardScore = int.Parse(xeSegment.GetAttribute("StandardScore"));
+
+                        PersonalityTestElementStandardParameterSegment parameterSegment = new PersonalityTestElementStandardParameterSegment(originalScoreMin, originalScoreMax, standardScore);
+
+                        elementStandardParameter.Segments.Add(parameterSegment);
+                    }
+
                     parametersSet.Parameters.Add(elementStandardParameter);
                 }
 

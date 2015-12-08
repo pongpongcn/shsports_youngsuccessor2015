@@ -57,6 +57,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
             this.Element = element;
             this.ParameterX = parameterX;
             this.ParameterS = parameterS;
+            this.Segments = new HashSet<PersonalityTestElementStandardParameterSegment>();
         }
 
         private PersonalityTestElementStandardParameter() { }
@@ -84,5 +85,23 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
         }
         public decimal ParameterX { get; private set; }
         public decimal ParameterS { get; private set; }
+        public virtual ICollection<PersonalityTestElementStandardParameterSegment> Segments { get; private set; }
+    }
+
+    public class PersonalityTestElementStandardParameterSegment
+    {
+        public PersonalityTestElementStandardParameterSegment(int originalScoreMin, int originalScoreMax, int standardScore)
+        {
+            this.OriginalScoreMin = originalScoreMin;
+            this.OriginalScoreMax = originalScoreMax;
+            this.StandardScore = standardScore;
+        }
+
+        private PersonalityTestElementStandardParameterSegment() { }
+
+        public int Id { get; private set; }
+        public int OriginalScoreMin { get; private set; }
+        public int OriginalScoreMax { get; private set; }
+        public int StandardScore { get; private set; }
     }
 }
