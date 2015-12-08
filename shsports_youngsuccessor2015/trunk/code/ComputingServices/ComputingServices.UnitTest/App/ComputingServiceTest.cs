@@ -165,6 +165,35 @@ namespace ComputingServices.UnitTest.App
         }
 
         [TestMethod]
+        public void TestGetPersonalityTestComplexResults()
+        {
+            IComputingService target = new ComputingService();
+
+            PersonalityTestElementStandardResult standardResult = new PersonalityTestElementStandardResult();
+            standardResult.Age = 10;
+            standardResult.RefId = "";
+            standardResult.Scores = new PersonalityTestElementStandardScore[]{
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)0, Value = -2 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)1, Value = -2 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)3, Value = 2 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)2, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)5, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)4, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)6, Value = -1 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)7, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)8, Value = -1 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)9, Value = 1 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)12, Value = 1 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)13, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)16, Value = -2 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)17, Value = 1 }
+            };
+
+
+            var actual = target.GetPersonalityTestComplexResults(new PersonalityTestElementStandardResult[] { standardResult });
+        }
+
+        [TestMethod]
         public void TestGetIQTestStandardResults()
         {
             IComputingService target = new ComputingService();
