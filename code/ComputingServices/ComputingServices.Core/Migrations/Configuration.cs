@@ -5,7 +5,7 @@ namespace ComputingServices.Core.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ComputingServices.Core.Infrastructure.Persistence.ComputingServicesContext>
+    public sealed class Configuration : DbMigrationsConfiguration<ComputingServices.Core.Infrastructure.Persistence.ComputingServicesContext>
     {
         public Configuration()
         {
