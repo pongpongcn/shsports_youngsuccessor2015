@@ -9,8 +9,7 @@ namespace ComputingServices.Core.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ComputingServices.Core.Infrastructure.Persistence.ComputingServicesContext context)

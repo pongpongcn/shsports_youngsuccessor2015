@@ -56,12 +56,21 @@
     <Compile Include="Domain\Models\PersonalityTest\PersonalityTestQuestionsSet.cs" />
     <Compile Include="Domain\Models\Shared\Gender.cs" />
     <Compile Include="Infrastructure\Persistence\ComputingServicesContext.cs" />
+    <Compile Include="Migrations\201512012000000_InitialCreate.cs" />
+    <Compile Include="Migrations\201512012000000_InitialCreate.Designer.cs">
+      <DependentUpon>201512012000000_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512012000000_InitialCreate.resx">
+      <DependentUpon>201512012000000_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
