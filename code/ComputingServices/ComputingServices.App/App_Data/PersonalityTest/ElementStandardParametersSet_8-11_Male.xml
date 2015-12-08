@@ -1,7 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ElementStandardParametersSet Name="8-11岁儿童男" AgeMin="8" AgeMax="11" Gender="Male">
-  <Parameter Element="A" X="6.76" S="1.62" />
-  <Parameter Element="B" X="4.73" S="1.54" />
+  <Parameter Element="A" X="6.76" S="1.62">
+    <Segment OriginalScoreMin="0" OriginalScoreMax="2" StandardScore="1"/>
+    <Segment OriginalScoreMin="3" OriginalScoreMax="3" StandardScore="2"/>
+    <Segment OriginalScoreMin="4" OriginalScoreMax="4" StandardScore="3"/>
+    <Segment OriginalScoreMin="5" OriginalScoreMax="5" StandardScore="4"/>
+  </Parameter>
+  <Parameter Element="B" X="4.73" S="1.54">
+    <Segment OriginalScoreMin="0" OriginalScoreMax="1" StandardScore="1"/>
+    <Segment OriginalScoreMin="2" OriginalScoreMax="2" StandardScore="3"/>
+    <Segment OriginalScoreMin="3" OriginalScoreMax="3" StandardScore="4"/>
+    <Segment OriginalScoreMin="4" OriginalScoreMax="4" StandardScore="5"/>
+    <Segment OriginalScoreMin="5" OriginalScoreMax="5" StandardScore="6"/>
+    <Segment OriginalScoreMin="6" OriginalScoreMax="6" StandardScore="7"/>
+    <Segment OriginalScoreMin="7" OriginalScoreMax="7" StandardScore="8"/>
+    <Segment OriginalScoreMin="8" OriginalScoreMax="8" StandardScore="9"/>
+    <Segment OriginalScoreMin="9" OriginalScoreMax="10" StandardScore="10"/>
+  </Parameter>
   <Parameter Element="C" X="6.82" S="1.94" />
   <Parameter Element="D" X="3.29" S="1.85" />
   <Parameter Element="E" X="4.91" S="1.64" />
