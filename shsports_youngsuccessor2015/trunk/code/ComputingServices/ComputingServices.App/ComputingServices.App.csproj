@@ -83,12 +83,16 @@
     <Content Include="App_Data\PersonalityTest\QuestionsSet_16PF.xml" />
     <Content Include="App_Data\PersonalityTest\QuestionsSet_CPQ.xml" />
     <Content Include="ComputingService.svc" />
+    <Content Include="Global.asax" />
     <Content Include="Tools.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComputingService.svc.cs">
       <DependentUpon>ComputingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IComputingService.cs" />
     <Compile Include="Models\ChildArea.cs" />
