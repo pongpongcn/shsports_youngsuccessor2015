@@ -56,8 +56,10 @@ namespace ComputingServices.Core.Domain.Models.CertainSportAbilityTest
                 {
                     this.GenderString = null;
                 }
-
-                this.GenderString = value.ToString();
+                else
+                {
+                    this.GenderString = value.ToString();
+                }
             }
         }
 
