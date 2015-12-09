@@ -35,5 +35,13 @@ namespace ComputingServices.App
         /// <returns>IQ值与类别</returns>
         [OperationContract]
         IQTestStandardResult[] GetIQTestStandardResults(IQTestPaperResult[] paperResults);
+
+        /// <summary>
+        /// 获取某个专项测试的小项分数及分数总和（大项分数）。
+        /// </summary>
+        /// <param name="originalResults">原始成绩</param>
+        /// <returns>小项及大项分数</returns>
+        [OperationContract]
+        CertainSportAbilityTestStandardResult[] GetCertainSportAbilityTestStandardResults(CertainSportAbilityTestOriginalResult[] originalResults);
     }
 }

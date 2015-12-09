@@ -238,5 +238,28 @@ namespace ComputingServices.UnitTest.App
 
             var actual = target.GetIQTestStandardResults(new IQTestPaperResult[] { paperResult });
         }
+
+        [TestMethod]
+        public void TestGetCertainSportAbilityTestStandardResults()
+        {
+            IComputingService target = new ComputingService();
+
+            CertainSportAbilityTestOriginalResult originalResult = new CertainSportAbilityTestOriginalResult
+            {
+                SportType = "sport_for_test",
+                Birthdate = new DateTime(2000, 3, 5),
+                TestDate = new DateTime(2010, 6, 7),
+                Gender = Gender.FEMALE,
+                RefId = "",
+                SubScores = new CertainSportAbilityTestOriginalSubScore[] { 
+                    new CertainSportAbilityTestOriginalSubScore{SubType="800m",Value="4:05"},
+                    new CertainSportAbilityTestOriginalSubScore{SubType="NeckLength",Value="14"},
+                    new CertainSportAbilityTestOriginalSubScore{SubType="Expressiveness",Value="具有较强的感染力"},
+                }
+            };
+
+
+            var actual = target.GetCertainSportAbilityTestStandardResults(new CertainSportAbilityTestOriginalResult[] { originalResult });
+        }
     }
 }

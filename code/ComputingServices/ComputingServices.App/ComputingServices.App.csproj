@@ -95,6 +95,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IComputingService.cs" />
+    <Compile Include="Models\CertainSportAbilityTestOriginalResult.cs" />
+    <Compile Include="Models\CertainSportAbilityTestStandardResult.cs" />
     <Compile Include="Models\ChildArea.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IQLevel.cs" />

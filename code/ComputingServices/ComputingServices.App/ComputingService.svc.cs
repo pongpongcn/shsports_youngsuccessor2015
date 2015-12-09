@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Data.Entity;
 using ComputingServices.Core.Domain.Models.IQTest;
+using ComputingServices.Core.Domain.Models.CertainSportAbilityTest;
 
 namespace ComputingServices.App
 {
@@ -389,6 +390,227 @@ namespace ComputingServices.App
             standardResult.RefId = paperResult.RefId;
 
             return standardResult;
+        }
+
+
+        public CertainSportAbilityTestStandardResult[] GetCertainSportAbilityTestStandardResults(CertainSportAbilityTestOriginalResult[] originalResults)
+        {
+            var sportTypes = originalResults.Select(item => item.SportType).Distinct().ToList();
+
+            List<CertainSportAbilityTestEvaluationCriteriaSport> allSports;
+            List<CertainSportAbilityTestEvaluationCriteriaSubSport> allSubSports;
+            List<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet> allSubSportParametersSets;
+            using (var context = new ComputingServicesContext())
+            {
+                allSports = context.CertainSportAbilityTestEvaluationCriteriaSports.Include(item=>item.Parameters).Where(item => sportTypes.Contains(item.Code)).ToList();
+                var allSportIds = allSports.Select(item => item.Id).ToList();
+                allSubSports = context.CertainSportAbilityTestEvaluationCriteriaSubSports.Where(item => allSportIds.Contains(item.Sport.Id)).ToList();
+                var allSubSportIds = allSubSports.Select(item => item.Id).ToList();
+                allSubSportParametersSets = context.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets.Include(item => item.Parameters).Where(item => allSubSportIds.Contains(item.SubSport.Id)).ToList();
+            }
+
+            Dictionary<string, CertainSportAbilityTestEvaluationCriteriaSportBundle> sportBundles = new Dictionary<string, CertainSportAbilityTestEvaluationCriteriaSportBundle>();
+            foreach (var sportType in sportTypes)
+            {
+                var sport = allSports.Single(item => item.Code == sportType);
+                var subSports = allSubSports.Where(item => item.Sport == sport).ToList();
+                var subSportParametersSets = allSubSportParametersSets.Where(item => subSports.Contains(item.SubSport)).ToList();
+
+                CertainSportAbilityTestEvaluationCriteriaSportBundle sportBundle = new CertainSportAbilityTestEvaluationCriteriaSportBundle(sport, subSports, subSportParametersSets);
+
+                sportBundles.Add(sportType, sportBundle);
+            }
+
+            List<CertainSportAbilityTestStandardResult> standardResultList = new List<CertainSportAbilityTestStandardResult>();
+
+            foreach (CertainSportAbilityTestOriginalResult originalResult in originalResults)
+            {
+                var sportBundle = sportBundles[originalResult.SportType];
+
+                var standardResult = GetCertainSportAbilityTestStandardResult(originalResult, sportBundle);
+
+                standardResultList.Add(standardResult);
+            }
+
+            return standardResultList.ToArray();
+        }
+
+        private class CertainSportAbilityTestEvaluationCriteriaSportBundle
+        {
+            public CertainSportAbilityTestEvaluationCriteriaSportBundle(CertainSportAbilityTestEvaluationCriteriaSport sport, List<CertainSportAbilityTestEvaluationCriteriaSubSport> subSports, List<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet> subSportParametersSets)
+            {
+                this.Sport = sport;
+                this.SubSports = subSports;
+                this.SubSportParametersSets = subSportParametersSets;
+            }
+            public CertainSportAbilityTestEvaluationCriteriaSport Sport { get; private set; }
+            public List<CertainSportAbilityTestEvaluationCriteriaSubSport> SubSports { get; private set; }
+            public List<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet> SubSportParametersSets { get; private set; }
+        }
+
+        private CertainSportAbilityTestStandardResult GetCertainSportAbilityTestStandardResult(CertainSportAbilityTestOriginalResult originalResult, CertainSportAbilityTestEvaluationCriteriaSportBundle sportBundle)
+        {
+            CertainSportAbilityTestStandardResult standardResult = new CertainSportAbilityTestStandardResult();
+
+            int age = GetCertainSportAbilityTestAge(originalResult.Birthdate, originalResult.TestDate);
+
+            Core.Domain.Models.Shared.Gender gender = ConvertToDomain(originalResult.Gender);
+
+            var sport = sportBundle.Sport;
+
+            List<CertainSportAbilityTestStandardSubScore> standardSubScoreList = new List<CertainSportAbilityTestStandardSubScore>();
+            foreach (var originalSubScore in originalResult.SubScores)
+            {
+                //确定子项目
+                var subSport = sportBundle.SubSports.Single(item => item.Sport == sport && item.Code == originalSubScore.SubType);
+
+                //确定评分标准集，符合年龄、性别条件
+                var subSportParametersSet = sportBundle.SubSportParametersSets.Single(item => item.SubSport == subSport && item.AgeMin <= age && item.AgeMax >= age && (item.Gender == null || item.Gender == gender));
+
+                CertainSportAbilityTestStandardSubScore standardSubScore = GetCertainSportAbilityTestStandardSubScore(originalSubScore.Value, subSportParametersSet);
+
+                standardSubScoreList.Add(standardSubScore);
+            }
+            standardResult.SubScores = standardSubScoreList.ToArray();
+
+            int overallScore = standardSubScoreList.Sum(item => item.Value);
+
+            var sportParameter = sport.Parameters.Where(item => overallScore >= item.Score && (item.Gender == null || item.Gender == gender) && (item.AgeMin == null || item.AgeMin <= age) && (item.AgeMax == null || item.AgeMax <= age)).OrderByDescending(item=>item.Score).FirstOrDefault();
+
+            standardResult.OverallScore = overallScore.ToString();
+            if (sportParameter != null)
+            {
+                standardResult.Level = sportParameter.Level;
+            }
+            standardResult.RefId = originalResult.RefId;
+
+            return standardResult;
+        }
+
+        private CertainSportAbilityTestStandardSubScore GetCertainSportAbilityTestStandardSubScore(string originalSubScoreValueString, CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet subSportParametersSet)
+        {
+            var dataType = subSportParametersSet.SubSport.DataType;
+            var comparePattern = subSportParametersSet.SubSport.ComparePattern;
+
+            CertainSportAbilityTestEvaluationCriteriaSubSportParameter matchedSubSportParameter = null;
+            switch(dataType)
+            {
+                case CertainSportAbilityTestDataType.Characters:
+                    {
+                        string originalSubScoreValue = originalSubScoreValueString;
+
+                        if(comparePattern == CertainSportAbilityTestComparePattern.Equal)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.SingleOrDefault(item => item.OriginalValue == originalSubScoreValue);
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Bad ComparePattern");
+                        }
+                    };break;
+                case CertainSportAbilityTestDataType.TimeSpan:
+                    {
+                        TimeSpan originalSubScoreValue = ToCertainSportAbilityTestTimeSpan(originalSubScoreValueString);
+
+                        if (comparePattern == CertainSportAbilityTestComparePattern.GreaterThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item=> originalSubScoreValue >= ToCertainSportAbilityTestTimeSpan(item.OriginalValue)).OrderByDescending(item=>ToCertainSportAbilityTestTimeSpan(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else if(comparePattern == CertainSportAbilityTestComparePattern.LessThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item=> originalSubScoreValue <= ToCertainSportAbilityTestTimeSpan(item.OriginalValue)).OrderBy(item=>ToCertainSportAbilityTestTimeSpan(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Bad ComparePattern");
+                        }
+                    };break;
+                case CertainSportAbilityTestDataType.Integer:
+                    {
+                        int originalSubScoreValue = ToCertainSportAbilityTestInteger(originalSubScoreValueString);
+
+                        if (comparePattern == CertainSportAbilityTestComparePattern.GreaterThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item => originalSubScoreValue >= ToCertainSportAbilityTestInteger(item.OriginalValue)).OrderByDescending(item => ToCertainSportAbilityTestInteger(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else if (comparePattern == CertainSportAbilityTestComparePattern.LessThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item => originalSubScoreValue <= ToCertainSportAbilityTestInteger(item.OriginalValue)).OrderBy(item => ToCertainSportAbilityTestInteger(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Bad ComparePattern");
+                        }
+                    };break;
+                case CertainSportAbilityTestDataType.Numeric:
+                    {
+                        decimal originalSubScoreValue = ToCertainSportAbilityTestNumeric(originalSubScoreValueString);
+
+                        if (comparePattern == CertainSportAbilityTestComparePattern.GreaterThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item => originalSubScoreValue >= ToCertainSportAbilityTestNumeric(item.OriginalValue)).OrderByDescending(item => ToCertainSportAbilityTestNumeric(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else if (comparePattern == CertainSportAbilityTestComparePattern.LessThanOrEqual)
+                        {
+                            matchedSubSportParameter = subSportParametersSet.Parameters.Where(item => originalSubScoreValue <= ToCertainSportAbilityTestNumeric(item.OriginalValue)).OrderBy(item => ToCertainSportAbilityTestNumeric(item.OriginalValue)).FirstOrDefault();
+                        }
+                        else
+                        {
+                            throw new ArgumentException("Bad ComparePattern");
+                        }
+                    };break;
+            }
+
+            CertainSportAbilityTestStandardSubScore standardSubScore = new CertainSportAbilityTestStandardSubScore();
+            standardSubScore.SubType = subSportParametersSet.SubSport.Code;
+            if(matchedSubSportParameter == null)
+            {
+                //不在评分范围，得零分。
+                standardSubScore.Value = 0;
+            }
+            else
+            {
+                standardSubScore.Value = matchedSubSportParameter.ScoreValue;
+                standardSubScore.Level = matchedSubSportParameter.ScoreLevel;
+            }
+
+            return standardSubScore;
+        }
+
+        private TimeSpan ToCertainSportAbilityTestTimeSpan(string value)
+        {
+            int partsCount = value.Split(':').Length;
+            for (int i = 0; i < 3 - partsCount; i++)
+            {
+                value = "0:" + value;
+            }
+            return TimeSpan.Parse(value);
+        }
+
+        private int ToCertainSportAbilityTestInteger(string value)
+        {
+            return int.Parse(value);
+        }
+
+        private decimal ToCertainSportAbilityTestNumeric(string value)
+        {
+            return decimal.Parse(value);
+        }
+
+        private int GetCertainSportAbilityTestAge(DateTime birthdate, DateTime testDate)
+        {
+            if (testDate <= birthdate)
+            {
+                throw new ArgumentException("TestDate must after Birthdate.");
+            }
+
+            int yearsSimple = testDate.Year - birthdate.Year;
+            if(birthdate.AddYears(yearsSimple) < testDate)
+            {
+                yearsSimple--;
+            }
+
+            return yearsSimple;
         }
     }
 }
