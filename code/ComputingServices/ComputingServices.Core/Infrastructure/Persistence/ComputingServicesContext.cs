@@ -1,4 +1,5 @@
-﻿using ComputingServices.Core.Domain.Models.IQTest;
+﻿using ComputingServices.Core.Domain.Models.CertainSportAbilityTest;
+using ComputingServices.Core.Domain.Models.IQTest;
 using ComputingServices.Core.Domain.Models.PersonalityTest;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,12 @@ namespace ComputingServices.Core.Infrastructure.Persistence
         private DbSet<IQTestQuestion> IQTestQuestions { get; set; }
         public DbSet<IQTestStandardParametersSet> IQTestStandardParametersSets { get; set; }
         private DbSet<IQTestStandardParameter> IQTestStandardParameters { get; set; }
-
+        public DbSet<CertainSportAbilityTestEvaluationCriteriaSport> CertainSportAbilityTestEvaluationCriteriaSports { get; set; }
+        private DbSet<CertainSportAbilityTestEvaluationCriteriaSportParameter> CertainSportAbilityTestEvaluationCriteriaSportParameters { get; set; }
+        public DbSet<CertainSportAbilityTestEvaluationCriteriaSubSport> CertainSportAbilityTestEvaluationCriteriaSubSports { get; set; }
+        public DbSet<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet> CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets { get; set; }
+        private DbSet<CertainSportAbilityTestEvaluationCriteriaSubSportParameter> CertainSportAbilityTestEvaluationCriteriaSubSportParameters { get; set; }
+        
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -49,6 +55,28 @@ namespace ComputingServices.Core.Infrastructure.Persistence
             modelBuilder.Entity<IQTestQuestion>().Property(type => type.CorrectChoice).IsRequired();
 
             modelBuilder.Entity<IQTestStandardParametersSet>().HasMany(type => type.Parameters).WithRequired();
+
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSport>().Property(type => type.Code).IsRequired();
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSport>().Property(type => type.Name).IsRequired();
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSport>().HasMany(type => type.Parameters).WithRequired();
+
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSportParameter>().Property(type => type.Level).IsRequired();
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSportParameter>().Ignore(type => type.Gender);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSportParameter>().Property(type => type.GenderString).HasColumnName("Gender");
+
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Property(type => type.Code).IsRequired();
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Property(type => type.Name).IsRequired();
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().HasRequired(type => type.Sport);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Ignore(type => type.DataType);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Property(type => type.DataTypeString).IsRequired().HasColumnName("DataType");
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Ignore(type => type.ComparePattern);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSport>().Property(type => type.ComparePatternString).IsRequired().HasColumnName("ComparePattern");
+
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().Ignore(type => type.Gender);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().Property(type => type.GenderString).HasColumnName("Gender");
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().HasRequired(type => type.SubSport);
+
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParameter>().Property(type => type.OriginalValue).IsRequired();
         }
     }
 }

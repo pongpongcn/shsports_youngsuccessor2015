@@ -14,6 +14,7 @@ namespace ComputingServices.Core.Domain.Models.IQTest
             this.Parameters = new HashSet<IQTestStandardParameter>();
         }
         private IQTestStandardParametersSet() { }
+
         public int Id { get; private set; }
         public int AgeMin { get; private set; }
         public int AgeMax { get; private set; }

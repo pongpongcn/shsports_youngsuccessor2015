@@ -38,7 +38,7 @@ namespace ComputingServices.Core.Domain.Models.PersonalityTest
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid Element");
+                    throw new ArgumentException("Invalid Gender");
                 }
             }
             set
