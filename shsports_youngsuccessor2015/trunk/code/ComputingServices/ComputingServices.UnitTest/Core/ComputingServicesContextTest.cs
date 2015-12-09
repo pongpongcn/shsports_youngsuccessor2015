@@ -99,18 +99,18 @@ namespace ComputingServices.UnitTest.Core
                 }
             }
 
-            using (var db = new ComputingServicesContext())
+            using (var context = new ComputingServicesContext())
             {
-                var existsSport = db.CertainSportAbilityTestEvaluationCriteriaSports.SingleOrDefault(item => item.Code == sportCode);
+                var existsSport = context.CertainSportAbilityTestEvaluationCriteriaSports.SingleOrDefault(item => item.Code == sportCode);
                 if (existsSport != null)
                 {
-                    db.CertainSportAbilityTestEvaluationCriteriaSports.Remove(existsSport);
+                    context.CertainSportAbilityTestEvaluationCriteriaSports.Remove(existsSport);
                 }
 
-                db.CertainSportAbilityTestEvaluationCriteriaSports.Add(sport);
-                db.CertainSportAbilityTestEvaluationCriteriaSubSports.AddRange(subSportList);
-                db.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets.AddRange(subSportParametersSetList);
-                db.SaveChanges();
+                context.CertainSportAbilityTestEvaluationCriteriaSports.Add(sport);
+                context.CertainSportAbilityTestEvaluationCriteriaSubSports.AddRange(subSportList);
+                context.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets.AddRange(subSportParametersSetList);
+                context.SaveChanges();
             }
         }
     }
