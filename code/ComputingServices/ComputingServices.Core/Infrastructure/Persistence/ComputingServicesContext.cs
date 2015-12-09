@@ -75,6 +75,7 @@ namespace ComputingServices.Core.Infrastructure.Persistence
             modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().Ignore(type => type.Gender);
             modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().Property(type => type.GenderString).HasColumnName("Gender");
             modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().HasRequired(type => type.SubSport);
+            modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet>().HasMany(type => type.Parameters).WithRequired();
 
             modelBuilder.Entity<CertainSportAbilityTestEvaluationCriteriaSubSportParameter>().Property(type => type.OriginalValue).IsRequired();
         }
