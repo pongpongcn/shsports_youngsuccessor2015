@@ -50,6 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Models\CertainSportAbilityTest\CertainSportAbilityTestDataType.cs" />
+    <Compile Include="Domain\Models\CertainSportAbilityTest\CertainSportAbilityTestEvaluationCriteriaSport.cs" />
+    <Compile Include="Domain\Models\CertainSportAbilityTest\CertainSportAbilityTestEvaluationCriteriaSportSub.cs" />
+    <Compile Include="Domain\Models\CertainSportAbilityTest\CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet.cs" />
+    <Compile Include="Domain\Models\CertainSportAbilityTest\CertainSportAbilityTestComparePattern.cs" />
     <Compile Include="Domain\Models\IQTest\IQTestQuestionsSet.cs" />
     <Compile Include="Domain\Models\IQTest\IQTestStandardParametersSet.cs" />
     <Compile Include="Domain\Models\PersonalityTest\PersonalityTestElementStandardParametersSet.cs" />
@@ -63,6 +68,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
