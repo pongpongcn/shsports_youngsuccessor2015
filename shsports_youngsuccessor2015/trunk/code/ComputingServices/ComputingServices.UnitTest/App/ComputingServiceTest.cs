@@ -165,7 +165,7 @@ namespace ComputingServices.UnitTest.App
         }
 
         [TestMethod]
-        public void TestGetPersonalityTestComplexResults()
+        public void TestGetPersonalityTestComplexResults_CPQ()
         {
             IComputingService target = new ComputingService();
 
@@ -187,6 +187,37 @@ namespace ComputingServices.UnitTest.App
                 new PersonalityTestElementStandardScore { Element = (PersonalityElement)13, Value = 0 },
                 new PersonalityTestElementStandardScore { Element = (PersonalityElement)16, Value = -2 },
                 new PersonalityTestElementStandardScore { Element = (PersonalityElement)17, Value = 1 }
+            };
+
+
+            var actual = target.GetPersonalityTestComplexResults(new PersonalityTestElementStandardResult[] { standardResult });
+        }
+
+        [TestMethod]
+        public void TestGetPersonalityTestComplexResults_16PF()
+        {
+            IComputingService target = new ComputingService();
+
+            PersonalityTestElementStandardResult standardResult = new PersonalityTestElementStandardResult();
+            standardResult.Age = 18;
+            standardResult.RefId = "";
+            standardResult.Scores = new PersonalityTestElementStandardScore[]{
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)0, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)2, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)4, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)5, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)6, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)7, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)8, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)10, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)11, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)12, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)13, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)14, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)15, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)16, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)17, Value = 0 },
+                new PersonalityTestElementStandardScore { Element = (PersonalityElement)1, Value = 0 }
             };
 
 
