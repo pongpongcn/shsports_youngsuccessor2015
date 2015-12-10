@@ -20,7 +20,19 @@
     @RenderSection("PageStyles", required: false)
 </head>
 <body>
-    @RenderBody()
+
+    <div class="container body-content">
+        <div class="page-header">
+            <h2 class="text-center">@ViewBag.Title</h2>
+        </div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>苗子库, 2015</p>
+        </footer>
+    </div>
+
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="@Url.Content("~/Statics/jquery/jquery-1.11.3.min.js")"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
