@@ -141,6 +141,7 @@
     <Content Include="App_Data\PersonalityTest\QuestionsSet_CPQ.xml" />
     <Content Include="ComputingService.svc" />
     <Content Include="Global.asax" />
+    <Content Include="KnockoutModels\CertainSportAbilityTestEvaluationCriteriaSportAdminViewModel.js" />
     <Content Include="Statics\bootstrap-3.3.5\css\bootstrap-theme.css" />
     <Content Include="Statics\bootstrap-3.3.5\css\bootstrap-theme.min.css" />
     <Content Include="Statics\bootstrap-3.3.5\css\bootstrap.css" />
@@ -251,10 +252,13 @@
     <Compile Include="ComputingService.svc.cs">
       <DependentUpon>ComputingService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CertainSportAbilityTestEvaluationCriteriaSportController.cs" />
+    <Compile Include="Controllers\CertainSportAbilityTestManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IComputingService.cs" />
+    <Compile Include="Models\CertainSportAbilityTestEvaluationCriteriaSportDTO.cs" />
     <Compile Include="Models\CertainSportAbilityTestOriginalResult.cs" />
     <Compile Include="Models\CertainSportAbilityTestStandardResult.cs" />
     <Compile Include="Models\ChildArea.cs" />
@@ -296,6 +300,7 @@
     <Content Include="Statics\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Statics\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Statics\jquery\jquery-1.11.3.min.map" />
+    <Content Include="Views\CertainSportAbilityTestManagement\SportAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -303,9 +308,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
