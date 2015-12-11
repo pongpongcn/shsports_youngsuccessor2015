@@ -1,10 +1,8 @@
 ﻿/// <reference path="../Statics/knockout/knockout-3.4.0.js" />
 /// <reference path="../Statics/jquery/jquery-1.11.3.js" />
 
-var sportAdminViewModel;
-
 // use as add sport view's view model
-function Sport(id, code, name) {
+function SportViewModel(id, code, name) {
     var self = this;
 
     // observable are update elements upon changes, also update on element data changes [two way binding]
@@ -22,7 +20,7 @@ function Sport(id, code, name) {
                 data: dataObject,
                 contentType: 'application/json',
                 success: function () {
-                    var sport = ko.utils.arrayFirst(sportAdminViewModel.sportListViewModel.sports(), function (item) {
+                    var sport = ko.utils.arrayFirst(appViewModel.sportList.sports(), function (item) {
                         return item.Id() == self.Id();
                     });
 
@@ -42,7 +40,7 @@ function Sport(id, code, name) {
                 data: dataObject,
                 contentType: 'application/json',
                 success: function (data) {
-                    sportAdminViewModel.sportListViewModel.sports.push(new Sport(data.Id, data.Code, data.Name));
+                    appViewModel.sportList.sports.push(new SportViewModel(data.Id, data.Code, data.Name));
 
                     self.Id(null);
                     self.Code('');
@@ -54,7 +52,7 @@ function Sport(id, code, name) {
 }
 
 // use as student list view's view model
-function SportList() {
+function SportListViewModel() {
     var self = this;
     // observable arrays are update binding elements upon array changes
     self.sports = ko.observableArray([]);
@@ -65,13 +63,13 @@ function SportList() {
         // retrieve students list from server side and push each object to model's students list
         $.getJSON(baseUrl + 'api/certainsportabilitytestevaluationcriteriasport', function (data) {
             $.each(data, function (key, value) {
-                self.sports.push(new Sport(value.Id, value.Code, value.Name));
+                self.sports.push(new SportViewModel(value.Id, value.Code, value.Name));
             });
         });
     };
 
     self.editSport = function (sport) {
-        var target = sportAdminViewModel.sportEditorViewModel;
+        var target = appViewModel.sportEditing;
         target.Id(sport.Id());
         target.Code(sport.Code());
         target.Name(sport.Name());
@@ -89,14 +87,19 @@ function SportList() {
     };
 }
 
-// create index view view model which contain two models for partial views
-sportAdminViewModel = { sportEditorViewModel: new Sport(), sportListViewModel: new SportList() };
+function AppViewModel() {
+    var self = this;
+    self.sportEditing = new SportViewModel();
+    self.sportList = new SportListViewModel();
+}
+
+var appViewModel = new AppViewModel();
 
 // on document ready
 $(document).ready(function () {
     // bind view model to referring view
-    ko.applyBindings(sportAdminViewModel);
+    ko.applyBindings(appViewModel);
 
     // load student data
-    sportAdminViewModel.sportListViewModel.getSports();
+    appViewModel.sportList.getSports();
 });
