@@ -6,10 +6,17 @@ function SportViewModel(id, code, name) {
     var self = this;
 
     self.id = ko.observable(id);
-    self.code = ko.observable(code);
-    self.name = ko.observable(name);
+    self.code = ko.observable(code).extend({ required: true });
+    self.name = ko.observable(name).extend({ required: true });
+
+    self.errors = ko.validation.group(self);
 
     self.save = function () {
+        if (self.errors().length > 0) {
+            self.errors.showAllMessages();
+            return;
+        }
+
         var dataObject = ko.toJSON(self);
 
         if (self.id() != null) {
@@ -25,10 +32,12 @@ function SportViewModel(id, code, name) {
 
                     sport.code(self.code());
                     sport.name(self.name());
-                    
+
                     self.id(null);
                     self.code('');
                     self.name('');
+
+                    self.errors.showAllMessages(false);
                 }
             });
         }
@@ -44,6 +53,8 @@ function SportViewModel(id, code, name) {
                     self.id(null);
                     self.code('');
                     self.name('');
+
+                    self.errors.showAllMessages(false);
                 }
             });
         }
