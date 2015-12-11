@@ -20,8 +20,7 @@
                         <input id="inpName" type="text" class="form-control" data-bind="value: Name" />
                     </div>
                 </form>
-
-                <input type="button" class="btn btn-primary" value="添加" data-bind="click: addSport" />
+                <input type="button" class="btn btn-primary" value="保存" data-bind="click: saveSport" />
             </div>
         </div>
     </div>
@@ -44,7 +43,10 @@
                         <tr>
                             <td data-bind="text: Code"></td>
                             <td data-bind="text: Name"></td>
-                            <td><input type="button" class="btn btn-danger btn-xs" value="删除" data-bind="click: $parent.removeSport" /></td>
+                            <td>
+                                <button type="button" class="btn btn-primary btn-xs" data-bind="click: $parent.editSport">编辑</button>
+                                <button type="button" class="btn btn-danger btn-xs" data-bind="click: $parent.removeSport">删除</button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -60,5 +62,8 @@
 
 @section PageScripts
 {
+    <script type="text/javascript">
+        var baseUrl = '@Url.Content("~/")';
+    </script>
     <script src="~/KnockoutModels/CertainSportAbilityTestEvaluationCriteriaSportAdminViewModel.js"></script>
 }
