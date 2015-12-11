@@ -1,35 +1,34 @@
 ﻿/// <reference path="../Statics/knockout/knockout-3.4.0.js" />
 /// <reference path="../Statics/jquery/jquery-1.11.3.js" />
 
-// use as add sport view's view model
+// Define a "Sport" class that tracks its own info(id, code, name), and has a method to save.
 function SportViewModel(id, code, name) {
     var self = this;
 
-    // observable are update elements upon changes, also update on element data changes [two way binding]
-    self.Id = ko.observable(id);
-    self.Code = ko.observable(code);
-    self.Name = ko.observable(name);
+    self.id = ko.observable(id);
+    self.code = ko.observable(code);
+    self.name = ko.observable(name);
 
-    self.saveSport = function () {
-        var dataObject = ko.toJSON(this);
+    self.save = function () {
+        var dataObject = ko.toJSON(self);
 
-        if (self.Id() != null) {
+        if (self.id() != null) {
             $.ajax({
-                url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + self.Id(),
+                url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + self.id(),
                 type: 'PUT',
                 data: dataObject,
                 contentType: 'application/json',
                 success: function () {
                     var sport = ko.utils.arrayFirst(appViewModel.sportList.sports(), function (item) {
-                        return item.Id() == self.Id();
+                        return item.id() == self.id();
                     });
 
-                    sport.Code(self.Code());
-                    sport.Name(self.Name());
+                    sport.code(self.code());
+                    sport.name(self.name());
                     
-                    self.Id(null);
-                    self.Code('');
-                    self.Name('');
+                    self.id(null);
+                    self.code('');
+                    self.name('');
                 }
             });
         }
@@ -42,9 +41,9 @@ function SportViewModel(id, code, name) {
                 success: function (data) {
                     appViewModel.sportList.sports.push(new SportViewModel(data.Id, data.Code, data.Name));
 
-                    self.Id(null);
-                    self.Code('');
-                    self.Name('');
+                    self.id(null);
+                    self.code('');
+                    self.name('');
                 }
             });
         }
@@ -57,7 +56,7 @@ function SportListViewModel() {
     // observable arrays are update binding elements upon array changes
     self.sports = ko.observableArray([]);
 
-    self.getSports = function () {
+    self.load = function () {
         self.sports.removeAll();
 
         // retrieve students list from server side and push each object to model's students list
@@ -68,16 +67,16 @@ function SportListViewModel() {
         });
     };
 
-    self.editSport = function (sport) {
+    self.editItem = function (sport) {
         var target = appViewModel.sportEditing;
-        target.Id(sport.Id());
-        target.Code(sport.Code());
-        target.Name(sport.Name());
+        target.id(sport.id());
+        target.code(sport.code());
+        target.name(sport.name());
     };
     // remove student. current data context object is passed to function automatically.
-    self.removeSport = function (sport) {
+    self.removeItem = function (sport) {
         $.ajax({
-            url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + sport.Id(),
+            url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + sport.id(),
             type: 'DELETE',
             contentType: 'application/json',
             success: function () {
@@ -87,13 +86,11 @@ function SportListViewModel() {
     };
 }
 
-function AppViewModel() {
-    var self = this;
-    self.sportEditing = new SportViewModel();
-    self.sportList = new SportListViewModel();
+// The view model is an abstract description of the state of the UI, but without any knowledge of the UI technology (HTML)
+var appViewModel = {
+    sportEditing : new SportViewModel(),
+    sportList : new SportListViewModel()
 }
-
-var appViewModel = new AppViewModel();
 
 // on document ready
 $(document).ready(function () {
@@ -101,5 +98,5 @@ $(document).ready(function () {
     ko.applyBindings(appViewModel);
 
     // load student data
-    appViewModel.sportList.getSports();
+    appViewModel.sportList.load();
 });
