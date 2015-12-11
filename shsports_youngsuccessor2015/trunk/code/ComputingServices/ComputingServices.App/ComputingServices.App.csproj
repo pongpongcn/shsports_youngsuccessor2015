@@ -235,6 +235,38 @@
     <Content Include="Statics\html5shiv-3.7.3\html5shiv.min.js" />
     <Content Include="Statics\jquery\jquery-1.11.3.js" />
     <Content Include="Statics\jquery\jquery-1.11.3.min.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\knockout.validation.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\knockout.validation.min.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ar-JO.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\bg-BG.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ca-ES.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\cs-CZ.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\da-DK.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\de-DE.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\el-GR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\en-US.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\es-ES.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\fa-IR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\fr-FR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\he-IL.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\hr-HR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\hu-HU.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\it-IT.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ja-JP.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ko-KR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\lv-LV.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\nb-NO.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\nl-BE.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\nl-NL.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\pl-PL.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\pt-BR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\pt-PT.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ro-RO.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\ru-RU.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\sv-SE.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\tr-TR.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\zh-CN.js" />
+    <Content Include="Statics\knockout-validation-2.0.3\localization\zh-TW.js" />
     <Content Include="Statics\knockout\knockout-3.4.0.js" />
     <Content Include="Statics\respond-1.4.2\respond.matchmedia.addListener.min.js" />
     <Content Include="Statics\respond-1.4.2\respond.matchmedia.addListener.src.js" />
@@ -301,6 +333,7 @@
     <Content Include="Statics\bootstrap-3.3.5\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Statics\jquery\jquery-1.11.3.min.map" />
     <Content Include="Views\CertainSportAbilityTestManagement\SportAdmin.cshtml" />
+    <Content Include="Statics\knockout-validation-2.0.3\knockout.validation.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
