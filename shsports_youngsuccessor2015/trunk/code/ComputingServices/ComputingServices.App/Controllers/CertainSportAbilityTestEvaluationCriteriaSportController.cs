@@ -74,6 +74,25 @@ namespace ComputingServices.App.Controllers
             return response;
         }
 
+        // PUT api/certainsportabilitytestevaluationcriteriasport/5
+        public HttpResponseMessage Put(int id, [FromBody]CertainSportAbilityTestEvaluationCriteriaSportDTO sportDTO)
+        {
+            using (var context = new ComputingServicesContext())
+            {
+                CertainSportAbilityTestEvaluationCriteriaSport sport = context.CertainSportAbilityTestEvaluationCriteriaSports.SingleOrDefault(item => item.Id == id);
+                if (sport == null)
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+                sport.UpdateBasicInfo(sportDTO.Code, sportDTO.Name);
+
+                context.SaveChanges();
+            }
+
+            var response = Request.CreateResponse(HttpStatusCode.NoContent);
+            return response;
+        }
+
         // DELETE api/certainsportabilitytestevaluationcriteriasport/5
         public HttpResponseMessage Delete(int id)
         {
@@ -89,7 +108,7 @@ namespace ComputingServices.App.Controllers
                 context.SaveChanges();
             }
 
-            var response = Request.CreateResponse(HttpStatusCode.OK, id);
+            var response = Request.CreateResponse(HttpStatusCode.NoContent);
             return response;
         }
     }

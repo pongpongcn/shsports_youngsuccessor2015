@@ -20,6 +20,12 @@ namespace ComputingServices.Core.Domain.Models.CertainSportAbilityTest
 
         private CertainSportAbilityTestEvaluationCriteriaSport() { }
 
+        public void UpdateBasicInfo(string code, string name)
+        {
+            this.Code = code;
+            this.Name = name;
+        }
+
         public int Id { get; private set; }
         /// <summary>
         /// 大项代号

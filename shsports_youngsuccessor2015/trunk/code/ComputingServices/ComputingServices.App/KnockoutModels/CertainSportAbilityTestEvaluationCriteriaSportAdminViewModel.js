@@ -12,22 +12,44 @@ function Sport(id, code, name) {
     self.Code = ko.observable(code);
     self.Name = ko.observable(name);
 
-    self.addSport = function () {
+    self.saveSport = function () {
         var dataObject = ko.toJSON(this);
 
-        $.ajax({
-            url: '/api/certainsportabilitytestevaluationcriteriasport',
-            type: 'post',
-            data: dataObject,
-            contentType: 'application/json',
-            success: function (data) {
-                sportAdminViewModel.sportListViewModel.sports.push(new Sport(data.Id, data.Code, data.Name));
+        if (self.Id() != null) {
+            $.ajax({
+                url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + self.Id(),
+                type: 'PUT',
+                data: dataObject,
+                contentType: 'application/json',
+                success: function () {
+                    var sport = ko.utils.arrayFirst(sportAdminViewModel.sportListViewModel.sports(), function (item) {
+                        return item.Id() == self.Id();
+                    });
 
-                self.Id(null);
-                self.Code('');
-                self.Name('');
-            }
-        });
+                    sport.Code(self.Code());
+                    sport.Name(self.Name());
+                    
+                    self.Id(null);
+                    self.Code('');
+                    self.Name('');
+                }
+            });
+        }
+        else {
+            $.ajax({
+                url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport',
+                type: 'POST',
+                data: dataObject,
+                contentType: 'application/json',
+                success: function (data) {
+                    sportAdminViewModel.sportListViewModel.sports.push(new Sport(data.Id, data.Code, data.Name));
+
+                    self.Id(null);
+                    self.Code('');
+                    self.Name('');
+                }
+            });
+        }
     };
 }
 
@@ -41,18 +63,24 @@ function SportList() {
         self.sports.removeAll();
 
         // retrieve students list from server side and push each object to model's students list
-        $.getJSON('/api/certainsportabilitytestevaluationcriteriasport', function (data) {
+        $.getJSON(baseUrl + 'api/certainsportabilitytestevaluationcriteriasport', function (data) {
             $.each(data, function (key, value) {
                 self.sports.push(new Sport(value.Id, value.Code, value.Name));
             });
         });
     };
 
+    self.editSport = function (sport) {
+        var target = sportAdminViewModel.sportEditorViewModel;
+        target.Id(sport.Id());
+        target.Code(sport.Code());
+        target.Name(sport.Name());
+    };
     // remove student. current data context object is passed to function automatically.
     self.removeSport = function (sport) {
         $.ajax({
-            url: '/api/certainsportabilitytestevaluationcriteriasport/' + sport.Id(),
-            type: 'delete',
+            url: baseUrl + 'api/certainsportabilitytestevaluationcriteriasport/' + sport.Id(),
+            type: 'DELETE',
             contentType: 'application/json',
             success: function () {
                 self.sports.remove(sport);
