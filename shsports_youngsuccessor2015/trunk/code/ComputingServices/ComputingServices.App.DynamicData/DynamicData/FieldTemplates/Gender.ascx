@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Gender.ascx.cs" Inherits="ComputingServices.App.DynamicData.DynamicData.FieldTemplates.Gender" %>
+<asp:Literal ID="ltlGender" runat="server" />

@@ -102,6 +102,7 @@
       <DependentUpon>ComputingServicesContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Core\CertainSportAbilityTestContextMeta.cs" />
+    <Compile Include="Core\CertainSportAbilityTestContextEnum.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -109,7 +110,23 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Content Include="DynamicData\FieldTemplates\Gender.ascx" />
+    <Content Include="DynamicData\FieldTemplates\Gender_Edit.ascx" />
     <Content Include="Global.asax" />
+    <Compile Include="DynamicData\FieldTemplates\Gender.ascx.cs">
+      <DependentUpon>Gender.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\Gender.ascx.designer.cs">
+      <DependentUpon>Gender.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\Gender_Edit.ascx.cs">
+      <DependentUpon>Gender_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\Gender_Edit.ascx.designer.cs">
+      <DependentUpon>Gender_Edit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
