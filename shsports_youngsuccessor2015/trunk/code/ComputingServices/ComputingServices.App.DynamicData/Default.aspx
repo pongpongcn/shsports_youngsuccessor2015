@@ -6,14 +6,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:ScriptManagerProxy ID="ScriptManagerProxy1" runat="server" />
 
-    <h2 class="DDSubHeader">我的表</h2>
+    <h2 class="DDSubHeader">数据</h2>
 
     <br /><br />
 
     <asp:GridView ID="Menu1" runat="server" AutoGenerateColumns="false"
         CssClass="DDGridView" RowStyle-CssClass="td" HeaderStyle-CssClass="th" CellPadding="6">
         <Columns>
-            <asp:TemplateField HeaderText="Table Name" SortExpression="TableName">
+            <asp:TemplateField HeaderText="名称" SortExpression="TableName">
                 <ItemTemplate>
                     <asp:DynamicHyperLink ID="HyperLink1" runat="server"><%# Eval("DisplayName") %></asp:DynamicHyperLink>
                 </ItemTemplate>

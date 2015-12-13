@@ -39,7 +39,7 @@ namespace ComputingServices.App.DynamicData
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HyperLink1.Text = "视图 " + ChildrenColumn.ChildTable.DisplayName;
+            HyperLink1.Text = "查看 " + ChildrenColumn.ChildTable.DisplayName;
         }
 
         protected string GetChildrenPath()
