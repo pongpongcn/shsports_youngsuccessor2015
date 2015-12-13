@@ -476,6 +476,7 @@
       <LastGenOutput>ComputingServicesContext.cs</LastGenOutput>
     </Content>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\ToWicresoft.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
