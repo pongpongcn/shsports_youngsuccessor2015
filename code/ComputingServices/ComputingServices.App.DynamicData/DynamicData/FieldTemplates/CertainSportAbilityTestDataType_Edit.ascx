@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CertainSportAbilityTestDataType_Edit.ascx.cs" Inherits="ComputingServices.App.DynamicData.DynamicData.FieldTemplates.CertainSportAbilityTestDataType_Edit" %>
+<asp:DropDownList ID="ddlDataType" runat="server" />

@@ -385,6 +385,7 @@ namespace ComputingServices.App
             }
 
             IQTestStandardResult standardResult = new IQTestStandardResult();
+            standardResult.OriginalValue = originalValue;
             standardResult.Value = IQ;
             standardResult.Level = Level;
             standardResult.RefId = paperResult.RefId;
