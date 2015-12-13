@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ComputingServices.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="AgeMin" Type="int" />
+          <Property Name="AgeMax" Type="int" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="CertainSportAbilityTestEvaluationCriteriaSport_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OriginalValue" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ScoreValue" Type="int" Nullable="false" />
+          <Property Name="ScoreLevel" Type="nvarchar(max)" />
+          <Property Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgeMin" Type="int" Nullable="false" />
+          <Property Name="AgeMax" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="SubSport_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="nvarchar(max)" />
+          <Property Name="DataType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ComparePattern" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sport_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSportParameters" Type="Self.CertainSportAbilityTestEvaluationCriteriaSportParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+              <PropertyRef Name="CertainSportAbilityTestEvaluationCriteriaSport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+              <PropertyRef Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSubSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+              <PropertyRef Name="SubSport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSports">
+              <PropertyRef Name="Sport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComputingServicesModelsStoreContainer">
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSportParameters" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSportParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSports" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSports" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSportParameters" EntitySet="CertainSportAbilityTestEvaluationCriteriaSportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComputingServices.Models" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
+          <Property Name="AgeMin" Type="Int32" />
+          <Property Name="AgeMax" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CertainSportAbilityTestEvaluationCriteriaSport_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSports" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport" FromRole="CertainSportAbilityTestEvaluationCriteriaSportParameters" ToRole="CertainSportAbilityTestEvaluationCriteriaSports" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSportParameters" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport" FromRole="CertainSportAbilityTestEvaluationCriteriaSports" ToRole="CertainSportAbilityTestEvaluationCriteriaSportParameters" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSports" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id" FromRole="CertainSportAbilityTestEvaluationCriteriaSports" ToRole="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OriginalValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ScoreValue" Type="Int32" Nullable="false" />
+          <Property Name="ScoreLevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete" FromRole="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" ToRole="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgeMin" Type="Int32" Nullable="false" />
+          <Property Name="AgeMax" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubSport_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete" FromRole="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" ToRole="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSports" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su" FromRole="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" ToRole="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+        </EntityType>
+        <EntityType Name="CertainSportAbilityTestEvaluationCriteriaSubSports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UnitOfMeasure" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DataType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ComparePattern" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sport_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSports" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id" FromRole="CertainSportAbilityTestEvaluationCriteriaSubSports" ToRole="CertainSportAbilityTestEvaluationCriteriaSports" />
+          <NavigationProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Relationship="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su" FromRole="CertainSportAbilityTestEvaluationCriteriaSubSports" ToRole="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+        </EntityType>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSportParameters" Type="Self.CertainSportAbilityTestEvaluationCriteriaSportParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+              <PropertyRef Name="CertainSportAbilityTestEvaluationCriteriaSport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSports">
+              <PropertyRef Name="Sport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+              <PropertyRef Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su">
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Type="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CertainSportAbilityTestEvaluationCriteriaSubSports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+              <PropertyRef Name="SubSport_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComputingServicesContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSportParameters" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSportParameters" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSports" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSports" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParameters" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+          <EntitySet Name="CertainSportAbilityTestEvaluationCriteriaSubSports" EntityType="Self.CertainSportAbilityTestEvaluationCriteriaSubSports" />
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSportParameters" EntitySet="CertainSportAbilityTestEvaluationCriteriaSportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParameters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su" Association="Self.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su">
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSports" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSports" />
+            <End Role="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" EntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ComputingServicesModelsStoreContainer" CdmEntityContainer="ComputingServicesContext">
+          <EntitySetMapping Name="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+            <EntityTypeMapping TypeName="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSportParameters">
+              <MappingFragment StoreEntitySet="CertainSportAbilityTestEvaluationCriteriaSportParameters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="AgeMin" ColumnName="AgeMin" />
+                <ScalarProperty Name="AgeMax" ColumnName="AgeMax" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CertainSportAbilityTestEvaluationCriteriaSport_Id" ColumnName="CertainSportAbilityTestEvaluationCriteriaSport_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertainSportAbilityTestEvaluationCriteriaSports">
+            <EntityTypeMapping TypeName="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSports">
+              <MappingFragment StoreEntitySet="CertainSportAbilityTestEvaluationCriteriaSports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+            <EntityTypeMapping TypeName="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+              <MappingFragment StoreEntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParameters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OriginalValue" ColumnName="OriginalValue" />
+                <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
+                <ScalarProperty Name="ScoreLevel" ColumnName="ScoreLevel" />
+                <ScalarProperty Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" ColumnName="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSet_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+            <EntityTypeMapping TypeName="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+              <MappingFragment StoreEntitySet="CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgeMin" ColumnName="AgeMin" />
+                <ScalarProperty Name="AgeMax" ColumnName="AgeMax" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SubSport_Id" ColumnName="SubSport_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CertainSportAbilityTestEvaluationCriteriaSubSports">
+            <EntityTypeMapping TypeName="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSports">
+              <MappingFragment StoreEntitySet="CertainSportAbilityTestEvaluationCriteriaSubSports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="ComparePattern" ColumnName="ComparePattern" />
+                <ScalarProperty Name="Sport_Id" ColumnName="Sport_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
