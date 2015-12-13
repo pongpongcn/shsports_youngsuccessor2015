@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CertainSportAbilityTestComparePattern.ascx.cs" Inherits="ComputingServices.App.DynamicData.DynamicData.FieldTemplates.CertainSportAbilityTestComparePattern" %>
+<asp:Literal ID="ltlComparePattern" runat="server" />

@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CertainSportAbilityTestComparePattern_Edit.ascx.cs" Inherits="ComputingServices.App.DynamicData.DynamicData.FieldTemplates.CertainSportAbilityTestComparePattern_Edit" %>
+<asp:DropDownList ID="ddlComparePattern" runat="server" />

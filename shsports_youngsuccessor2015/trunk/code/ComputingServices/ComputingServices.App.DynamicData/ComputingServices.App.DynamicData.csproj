@@ -110,9 +110,41 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Content Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern.ascx" />
+    <Content Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern_Edit.ascx" />
+    <Content Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType.ascx" />
+    <Content Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType_Edit.ascx" />
     <Content Include="DynamicData\FieldTemplates\Gender.ascx" />
     <Content Include="DynamicData\FieldTemplates\Gender_Edit.ascx" />
     <Content Include="Global.asax" />
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern.ascx.cs">
+      <DependentUpon>CertainSportAbilityTestComparePattern.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern.ascx.designer.cs">
+      <DependentUpon>CertainSportAbilityTestComparePattern.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern_Edit.ascx.cs">
+      <DependentUpon>CertainSportAbilityTestComparePattern_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestComparePattern_Edit.ascx.designer.cs">
+      <DependentUpon>CertainSportAbilityTestComparePattern_Edit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType.ascx.cs">
+      <DependentUpon>CertainSportAbilityTestDataType.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType.ascx.designer.cs">
+      <DependentUpon>CertainSportAbilityTestDataType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType_Edit.ascx.cs">
+      <DependentUpon>CertainSportAbilityTestDataType_Edit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DynamicData\FieldTemplates\CertainSportAbilityTestDataType_Edit.ascx.designer.cs">
+      <DependentUpon>CertainSportAbilityTestDataType_Edit.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DynamicData\FieldTemplates\Gender.ascx.cs">
       <DependentUpon>Gender.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -13,6 +13,11 @@ namespace ComputingServices.App.Models
     public class IQTestStandardResult
     {
         /// <summary>
+        /// 答题分数
+        /// </summary>
+        [DataMember]
+        public int OriginalValue { get; set; }
+        /// <summary>
         /// IQ值
         /// </summary>
         [DataMember]

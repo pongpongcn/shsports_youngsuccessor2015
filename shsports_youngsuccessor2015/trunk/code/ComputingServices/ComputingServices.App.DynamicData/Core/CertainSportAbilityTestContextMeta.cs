@@ -57,8 +57,10 @@ namespace ComputingServices.App.DynamicData.Core
             public string Name { get; set; }
             [DisplayName("计量单位")]
             public string UnitOfMeasure { get; set; }
+            [UIHint("CertainSportAbilityTestDataType")]
             [DisplayName("数据类型")]
             public string DataType { get; set; }
+            [UIHint("CertainSportAbilityTestComparePattern")]
             [DisplayName("数据比较模式")]
             public string ComparePattern { get; set; }
 
@@ -77,6 +79,7 @@ namespace ComputingServices.App.DynamicData.Core
             public int AgeMin { get; set; }
             [DisplayName("年龄上限")]
             public int AgeMax { get; set; }
+            [UIHint("Gender")]
             [DisplayName("性别")]
             public string Gender { get; set; }
 
