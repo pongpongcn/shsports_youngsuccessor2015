@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="04e9f951b3844d0aaec7657caa8d47ad" Name="Diagram1">
+        <EntityTypeShape EntityType="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSportParameters" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSports" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSportParameters" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ComputingServices.Models.CertainSportAbilityTestEvaluationCriteriaSubSports" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="ComputingServices.Models.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSports_CertainSport" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputingServices.Models.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_dbo_CertainSportAbilityTestEvaluationCriteriaSports_Sport_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputingServices.Models.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParameters_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParamete" ManuallyRouted="false" />
+        <AssociationConnector Association="ComputingServices.Models.FK_dbo_CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets_dbo_CertainSportAbilityTestEvaluationCriteriaSubSports_Su" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
