@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ComputingServicesContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Core\CertainSportAbilityTestContextMeta.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

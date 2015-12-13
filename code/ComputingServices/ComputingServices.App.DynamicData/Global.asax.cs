@@ -41,20 +41,20 @@ namespace ComputingServices.App.DynamicData
             // 下面的语句支持 separate-page 模式，在这种模式下，“列表”、“详细”、“插入”和
             // “更新”任务是使用不同页执行的。若要启用此模式，请取消注释以下
             // route 定义，并注释掉后面的 combined-page 模式节中的 route 定义。
-            routes.Add(new DynamicDataRoute("{table}/{action}.aspx")
-            {
-                Constraints = new RouteValueDictionary(new { action = "List|Details|Edit|Insert" }),
-                Model = DefaultModel
-            });
+            //routes.Add(new DynamicDataRoute("{table}/{action}.aspx")
+            //{
+            //    Constraints = new RouteValueDictionary(new { action = "List|Details|Edit|Insert" }),
+            //    Model = DefaultModel
+            //});
 
             // 下面的语句支持 combined-page 模式，在这种模式下，“列表”、“详细”、“插入”和
             // “更新”任务是使用同一页执行的。若要启用此模式，请取消注释
             // 以下 routes，并注释掉以上 separate-page 模式节中的 route 定义。
-            //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
-            //    Action = PageAction.List,
-            //    ViewName = "ListDetails",
-            //    Model = DefaultModel
-            //});
+            routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
+                Action = PageAction.List,
+                ViewName = "ListDetails",
+                Model = DefaultModel
+            });
 
             //routes.Add(new DynamicDataRoute("{table}/ListDetails.aspx") {
             //    Action = PageAction.Details,
