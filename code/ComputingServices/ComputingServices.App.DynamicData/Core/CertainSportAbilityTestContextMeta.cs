@@ -39,6 +39,7 @@ namespace ComputingServices.App.DynamicData.Core
             public Nullable<int> AgeMin { get; set; }
             [DisplayName("年龄上限")]
             public Nullable<int> AgeMax { get; set; }
+            [UIHint("Gender")]
             [DisplayName("性别")]
             public string Gender { get; set; }
         }

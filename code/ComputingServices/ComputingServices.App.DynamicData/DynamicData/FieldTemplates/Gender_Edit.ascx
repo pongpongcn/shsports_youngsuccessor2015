@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Gender_Edit.ascx.cs" Inherits="ComputingServices.App.DynamicData.DynamicData.FieldTemplates.Gender_Edit" %>
+<asp:DropDownList ID="ddlGender" runat="server" />
