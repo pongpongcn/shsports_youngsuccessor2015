@@ -23,6 +23,11 @@ namespace ComputingServices.App.DynamicData.Core
             [DisplayName("子项目")]
             public virtual ICollection<CertainSportAbilityTestEvaluationCriteriaSubSports> CertainSportAbilityTestEvaluationCriteriaSubSports { get; set; }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 
     [MetadataType(typeof(CertainSportAbilityTestEvaluationCriteriaSportParametersMetadata))]
@@ -67,6 +72,11 @@ namespace ComputingServices.App.DynamicData.Core
             [DisplayName("子项目规则组")]
             public virtual ICollection<CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets> CertainSportAbilityTestEvaluationCriteriaSubSportParametersSets { get; set; }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}-{1}",CertainSportAbilityTestEvaluationCriteriaSports, Name);
+        }
     }
 
     [MetadataType(typeof(CertainSportAbilityTestEvaluationCriteriaSubSportParametersSetsMetadata))]
@@ -85,6 +95,38 @@ namespace ComputingServices.App.DynamicData.Core
 
             [DisplayName("子项目规则")]
             public virtual ICollection<CertainSportAbilityTestEvaluationCriteriaSubSportParameters> CertainSportAbilityTestEvaluationCriteriaSubSportParameters { get; set; }
+        }
+
+        public override string ToString()
+        {
+            string agePart;
+            if (AgeMin == AgeMax)
+            {
+                agePart = string.Format("{0}岁", AgeMin);
+            }
+            else
+            {
+                agePart = string.Format("{0}-{1}岁", AgeMin, AgeMax);
+            }
+            string genderPart;
+            if (!string.IsNullOrEmpty(Gender))
+            {
+                Core.Gender gender;
+                if(Enum.TryParse(Gender, out gender))
+                {
+                    var attr = (DescriptionAttribute)typeof(Core.Gender).GetMember(Gender)[0].GetCustomAttributes(typeof(DescriptionAttribute), false)[0];
+                    genderPart = attr.Description;
+                }
+                else
+                {
+                    genderPart = "性别数据异常";
+                }
+            }
+            else
+            {
+                genderPart = "性别不限";
+            }
+            return string.Format("{0}-{1}-{2}", CertainSportAbilityTestEvaluationCriteriaSubSports, genderPart, agePart);
         }
     }
 
