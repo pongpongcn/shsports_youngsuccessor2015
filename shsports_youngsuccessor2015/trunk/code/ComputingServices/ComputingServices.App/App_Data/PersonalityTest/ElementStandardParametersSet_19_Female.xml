@@ -1,19 +1,195 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ElementStandardParametersSet Name="19岁以上大学生女" AgeMin="19" AgeMax="60" Gender="Female">
-  <Parameter Element="A" X="10.58" S="3.58" />
-  <Parameter Element="B" X="9.35" S="1.94" />
-  <Parameter Element="C" X="13.94" S="3.84" />
-  <Parameter Element="E" X="13.52" S="3.64" />
-  <Parameter Element="F" X="14.51" S="4.7" />
-  <Parameter Element="G" X="11.43" S="3.4" />
-  <Parameter Element="H" X="11.47" S="4.6" />
-  <Parameter Element="I" X="11.31" S="3" />
-  <Parameter Element="L" X="10.17" S="3.08" />
-  <Parameter Element="M" X="13.51" S="3.12" />
-  <Parameter Element="N" X="9.91" S="2.53" />
-  <Parameter Element="O" X="9.3" S="4.31" />
-  <Parameter Element="Q1" X="12.49" S="2.6" />
-  <Parameter Element="Q2" X="12.32" S="3.38" />
-  <Parameter Element="Q3" X="12.1" S="3.23" />
-  <Parameter Element="Q4" X="11.83" S="3.91" />
+  <Parameter Element="A" X="10.58" S="3.58">
+    <Segment OriginalScoreMin="0" OriginalScoreMax="2" StandardScore="1"/>    
+    <Segment OriginalScoreMin="3" OriginalScoreMax="4" StandardScore="2"/>    
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="3"/>    
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="4"/>    
+    <Segment OriginalScoreMin="9" OriginalScoreMax="10" StandardScore="5"/>   
+    <Segment OriginalScoreMin="11" OriginalScoreMax="12" StandardScore="6"/>  
+    <Segment OriginalScoreMin="13" OriginalScoreMax="14" StandardScore="7"/>  
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="8"/>  
+    <Segment OriginalScoreMin="17" OriginalScoreMax="17" StandardScore="9"/>  
+    <Segment OriginalScoreMin="18" OriginalScoreMax="20" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                           
+  <Parameter Element="B" X="9.35" S="1.94">
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>    
+    <Segment OriginalScoreMin="5" OriginalScoreMax="5" StandardScore="2"/>    
+    <Segment OriginalScoreMin="6" OriginalScoreMax="6" StandardScore="3"/>    
+    <Segment OriginalScoreMin="7" OriginalScoreMax="7" StandardScore="4"/>    
+    <Segment OriginalScoreMin="8" OriginalScoreMax="8" StandardScore="5"/>    
+    <Segment OriginalScoreMin="9" OriginalScoreMax="9" StandardScore="6"/>    
+    <Segment OriginalScoreMin="10" OriginalScoreMax="10" StandardScore="7"/>  
+    <Segment OriginalScoreMin="11" OriginalScoreMax="11" StandardScore="8"/>  
+    <Segment OriginalScoreMin="12" OriginalScoreMax="12" StandardScore="9"/>  
+    <Segment OriginalScoreMin="13" OriginalScoreMax="13" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                               
+  <Parameter Element="C" X="13.94" S="3.84" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="5" StandardScore="1"/>    
+    <Segment OriginalScoreMin="6" OriginalScoreMax="7" StandardScore="2"/>    
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="3"/>    
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="4"/>  
+    <Segment OriginalScoreMin="12" OriginalScoreMax="13" StandardScore="5"/>  
+    <Segment OriginalScoreMin="14" OriginalScoreMax="16" StandardScore="6"/>  
+    <Segment OriginalScoreMin="17" OriginalScoreMax="18" StandardScore="7"/>  
+    <Segment OriginalScoreMin="19" OriginalScoreMax="19" StandardScore="8"/>  
+    <Segment OriginalScoreMin="20" OriginalScoreMax="21" StandardScore="9"/>  
+    <Segment OriginalScoreMin="22" OriginalScoreMax="26" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                 
+  <Parameter Element="E" X="13.52" S="3.64" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="5" StandardScore="1"/>     
+    <Segment OriginalScoreMin="6" OriginalScoreMax="7" StandardScore="2"/>     
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="3"/>     
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="4"/>   
+    <Segment OriginalScoreMin="12" OriginalScoreMax="13" StandardScore="5"/>   
+    <Segment OriginalScoreMin="14" OriginalScoreMax="15" StandardScore="6"/>   
+    <Segment OriginalScoreMin="16" OriginalScoreMax="17" StandardScore="7"/>   
+    <Segment OriginalScoreMin="18" OriginalScoreMax="19" StandardScore="8"/>   
+    <Segment OriginalScoreMin="20" OriginalScoreMax="21" StandardScore="9"/>   
+    <Segment OriginalScoreMin="22" OriginalScoreMax="26" StandardScore="10"/>  
+  </Parameter>                                                                                                                                                                                                                                                                                                                                    
+  <Parameter Element="F" X="14.51" S="4.70" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>   
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="2"/>   
+    <Segment OriginalScoreMin="7" OriginalScoreMax="9" StandardScore="3"/>   
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="4"/> 
+    <Segment OriginalScoreMin="12" OriginalScoreMax="14" StandardScore="5"/> 
+    <Segment OriginalScoreMin="15" OriginalScoreMax="17" StandardScore="6"/> 
+    <Segment OriginalScoreMin="18" OriginalScoreMax="19" StandardScore="7"/> 
+    <Segment OriginalScoreMin="20" OriginalScoreMax="21" StandardScore="8"/> 
+    <Segment OriginalScoreMin="22" OriginalScoreMax="24" StandardScore="9"/> 
+    <Segment OriginalScoreMin="25" OriginalScoreMax="26" StandardScore="10"/>
+  </Parameter>                                                                                                                                                                                                                                                                                                                                               
+  <Parameter Element="G" X="11.43" S="3.40" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>     
+    <Segment OriginalScoreMin="5" OriginalScoreMax="5" StandardScore="2"/>     
+    <Segment OriginalScoreMin="6" OriginalScoreMax="7" StandardScore="3"/>     
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="4"/>     
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="5"/>   
+    <Segment OriginalScoreMin="12" OriginalScoreMax="13" StandardScore="6"/>   
+    <Segment OriginalScoreMin="14" OriginalScoreMax="15" StandardScore="7"/>   
+    <Segment OriginalScoreMin="16" OriginalScoreMax="16" StandardScore="8"/>   
+    <Segment OriginalScoreMin="17" OriginalScoreMax="17" StandardScore="9"/>   
+    <Segment OriginalScoreMin="18" OriginalScoreMax="20" StandardScore="10"/>  
+  </Parameter>                                                                                                                                                                                                                                                                                                                                              
+  <Parameter Element="H" X="11.47" S="4.60" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="1" StandardScore="1"/>     
+    <Segment OriginalScoreMin="2" OriginalScoreMax="3" StandardScore="2"/>     
+    <Segment OriginalScoreMin="4" OriginalScoreMax="6" StandardScore="3"/>     
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="4"/>     
+    <Segment OriginalScoreMin="9" OriginalScoreMax="11" StandardScore="5"/>    
+    <Segment OriginalScoreMin="12" OriginalScoreMax="14" StandardScore="6"/>   
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="7"/>   
+    <Segment OriginalScoreMin="17" OriginalScoreMax="18" StandardScore="8"/>   
+    <Segment OriginalScoreMin="19" OriginalScoreMax="20" StandardScore="9"/>   
+    <Segment OriginalScoreMin="21" OriginalScoreMax="26" StandardScore="10"/>  
+  </Parameter>                                                                                                                                                                                                                                                                                          
+  <Parameter Element="I" X="11.31" S="3.00" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>   
+    <Segment OriginalScoreMin="5" OriginalScoreMax="5" StandardScore="2"/>   
+    <Segment OriginalScoreMin="6" OriginalScoreMax="7" StandardScore="3"/>   
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="4"/>   
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="5"/> 
+    <Segment OriginalScoreMin="12" OriginalScoreMax="13" StandardScore="6"/> 
+    <Segment OriginalScoreMin="14" OriginalScoreMax="14" StandardScore="7"/> 
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="8"/> 
+    <Segment OriginalScoreMin="17" OriginalScoreMax="17" StandardScore="9"/> 
+    <Segment OriginalScoreMin="18" OriginalScoreMax="20" StandardScore="10"/>
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                 
+  <Parameter Element="L" X="10.17" S="3.08" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="3" StandardScore="1"/>    
+    <Segment OriginalScoreMin="4" OriginalScoreMax="4" StandardScore="2"/>    
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="3"/>    
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="4"/>    
+    <Segment OriginalScoreMin="9" OriginalScoreMax="10" StandardScore="5"/>   
+    <Segment OriginalScoreMin="11" OriginalScoreMax="12" StandardScore="6"/>  
+    <Segment OriginalScoreMin="13" OriginalScoreMax="13" StandardScore="7"/>  
+    <Segment OriginalScoreMin="14" OriginalScoreMax="15" StandardScore="8"/>  
+    <Segment OriginalScoreMin="16" OriginalScoreMax="16" StandardScore="9"/>  
+    <Segment OriginalScoreMin="17" OriginalScoreMax="20" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                       
+  <Parameter Element="M" X="13.51" S="3.12" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="6" StandardScore="1"/>    
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="2"/>    
+    <Segment OriginalScoreMin="9" OriginalScoreMax="9" StandardScore="3"/>    
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="4"/>  
+    <Segment OriginalScoreMin="12" OriginalScoreMax="13" StandardScore="5"/>  
+    <Segment OriginalScoreMin="14" OriginalScoreMax="15" StandardScore="6"/>  
+    <Segment OriginalScoreMin="16" OriginalScoreMax="17" StandardScore="7"/>  
+    <Segment OriginalScoreMin="18" OriginalScoreMax="18" StandardScore="8"/>  
+    <Segment OriginalScoreMin="19" OriginalScoreMax="19" StandardScore="9"/>  
+    <Segment OriginalScoreMin="20" OriginalScoreMax="26" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                   
+  <Parameter Element="N" X="9.91" S="2.53" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="3" StandardScore="1"/>   
+    <Segment OriginalScoreMin="4" OriginalScoreMax="5" StandardScore="2"/>   
+    <Segment OriginalScoreMin="6" OriginalScoreMax="6" StandardScore="3"/>   
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="4"/>   
+    <Segment OriginalScoreMin="9" OriginalScoreMax="10" StandardScore="5"/>  
+    <Segment OriginalScoreMin="11" OriginalScoreMax="11" StandardScore="6"/> 
+    <Segment OriginalScoreMin="12" OriginalScoreMax="12" StandardScore="7"/> 
+    <Segment OriginalScoreMin="13" OriginalScoreMax="14" StandardScore="8"/> 
+    <Segment OriginalScoreMin="15" OriginalScoreMax="15" StandardScore="9"/> 
+    <Segment OriginalScoreMin="16" OriginalScoreMax="20" StandardScore="10"/>
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                   
+  <Parameter Element="O" X="9.30" S="4.31" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="1" StandardScore="1"/>   
+    <Segment OriginalScoreMin="2" OriginalScoreMax="2" StandardScore="2"/>   
+    <Segment OriginalScoreMin="3" OriginalScoreMax="4" StandardScore="3"/>   
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="4"/>   
+    <Segment OriginalScoreMin="7" OriginalScoreMax="9" StandardScore="5"/>   
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="6"/> 
+    <Segment OriginalScoreMin="12" OriginalScoreMax="14" StandardScore="7"/> 
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="8"/> 
+    <Segment OriginalScoreMin="17" OriginalScoreMax="18" StandardScore="9"/> 
+    <Segment OriginalScoreMin="19" OriginalScoreMax="26" StandardScore="10"/>
+  </Parameter>                                                                                                                                                                                                                                   
+  <Parameter Element="Q1" X="12.49" S="2.60" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="6" StandardScore="1"/>      
+    <Segment OriginalScoreMin="7" OriginalScoreMax="7" StandardScore="2"/>      
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="3"/>      
+    <Segment OriginalScoreMin="10" OriginalScoreMax="10" StandardScore="4"/>    
+    <Segment OriginalScoreMin="11" OriginalScoreMax="12" StandardScore="5"/>    
+    <Segment OriginalScoreMin="13" OriginalScoreMax="14" StandardScore="6"/>    
+    <Segment OriginalScoreMin="15" OriginalScoreMax="15" StandardScore="7"/>    
+    <Segment OriginalScoreMin="16" OriginalScoreMax="16" StandardScore="8"/>    
+    <Segment OriginalScoreMin="17" OriginalScoreMax="18" StandardScore="9"/>    
+    <Segment OriginalScoreMin="19" OriginalScoreMax="20" StandardScore="10"/>   
+  </Parameter>                                                                                                                                                                                                                                       
+  <Parameter Element="Q2" X="12.32" S="3.38" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>   
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="2"/>   
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="3"/>   
+    <Segment OriginalScoreMin="9" OriginalScoreMax="10" StandardScore="4"/>  
+    <Segment OriginalScoreMin="11" OriginalScoreMax="12" StandardScore="5"/> 
+    <Segment OriginalScoreMin="13" OriginalScoreMax="14" StandardScore="6"/> 
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="7"/> 
+    <Segment OriginalScoreMin="17" OriginalScoreMax="17" StandardScore="8"/> 
+    <Segment OriginalScoreMin="18" OriginalScoreMax="19" StandardScore="9"/> 
+    <Segment OriginalScoreMin="20" OriginalScoreMax="20" StandardScore="10"/>
+  </Parameter>                                                                                                                                                                                                                                                                                                                                           
+  <Parameter Element="Q3" X="12.10" S="3.23" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="4" StandardScore="1"/>    
+    <Segment OriginalScoreMin="5" OriginalScoreMax="6" StandardScore="2"/>    
+    <Segment OriginalScoreMin="7" OriginalScoreMax="8" StandardScore="3"/>    
+    <Segment OriginalScoreMin="9" OriginalScoreMax="9" StandardScore="4"/>    
+    <Segment OriginalScoreMin="10" OriginalScoreMax="12" StandardScore="5"/>  
+    <Segment OriginalScoreMin="13" OriginalScoreMax="14" StandardScore="6"/>  
+    <Segment OriginalScoreMin="15" OriginalScoreMax="15" StandardScore="7"/>  
+    <Segment OriginalScoreMin="16" OriginalScoreMax="17" StandardScore="8"/>  
+    <Segment OriginalScoreMin="18" OriginalScoreMax="18" StandardScore="9"/>  
+    <Segment OriginalScoreMin="19" OriginalScoreMax="20" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                       
+  <Parameter Element="Q4" X="11.83" S="3.91" >
+    <Segment OriginalScoreMin="0" OriginalScoreMax="3" StandardScore="1"/>    
+    <Segment OriginalScoreMin="4" OriginalScoreMax="5" StandardScore="2"/>    
+    <Segment OriginalScoreMin="6" OriginalScoreMax="7" StandardScore="3"/>    
+    <Segment OriginalScoreMin="8" OriginalScoreMax="9" StandardScore="4"/>    
+    <Segment OriginalScoreMin="10" OriginalScoreMax="11" StandardScore="5"/>  
+    <Segment OriginalScoreMin="12" OriginalScoreMax="14" StandardScore="6"/>  
+    <Segment OriginalScoreMin="15" OriginalScoreMax="16" StandardScore="7"/>  
+    <Segment OriginalScoreMin="17" OriginalScoreMax="18" StandardScore="8"/>  
+    <Segment OriginalScoreMin="19" OriginalScoreMax="20" StandardScore="9"/>  
+    <Segment OriginalScoreMin="21" OriginalScoreMax="26" StandardScore="10"/> 
+  </Parameter>                                                                                                                                                                                                                                                                                                                                                         
 </ElementStandardParametersSet>
