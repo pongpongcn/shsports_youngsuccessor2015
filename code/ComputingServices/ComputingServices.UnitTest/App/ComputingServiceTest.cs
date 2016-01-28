@@ -14,7 +14,7 @@ namespace ComputingServices.UnitTest.App
             IComputingService target = new ComputingService();
 
             PersonalityTestPaperResult paperResult = new PersonalityTestPaperResult();
-            paperResult.Age = 15;
+            paperResult.Age = 14;
             paperResult.Gender = Gender.MALE;
             paperResult.QuestionsSetCode = "16PF";
             paperResult.RefId = "";
