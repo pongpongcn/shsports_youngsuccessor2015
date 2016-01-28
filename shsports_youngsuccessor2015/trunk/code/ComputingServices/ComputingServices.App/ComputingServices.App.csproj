@@ -137,8 +137,8 @@
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_19_Male.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_8-11_Female.xml" />
     <Content Include="App_Data\PersonalityTest\ElementStandardParametersSet_8-11_Male.xml" />
-    <Content Include="App_Data\PersonalityTest\QuestionsSet_16PF.xml" />
-    <Content Include="App_Data\PersonalityTest\QuestionsSet_CPQ.xml" />
+    <Content Include="App_Data\PersonalityTest\QuestionsSet.xml" />
+    <Content Include="App_Data\PersonalityTest\QuestionsSet1.xml" />
     <Content Include="ComputingService.svc" />
     <Content Include="Global.asax" />
     <Content Include="KnockoutModels\CertainSportAbilityTestEvaluationCriteriaSportAdminViewModel.js" />
@@ -353,7 +353,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2953</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
