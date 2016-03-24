@@ -96,6 +96,7 @@ namespace ComputingServices.App
                 {
                     elementStandardScore.Element = appElement;
                     elementStandardScore.Value = standardScoreValue;
+                    elementStandardScore.OriginalValue = originalValue;
 
                     elementStandardScoreList.Add(elementStandardScore);
                 }

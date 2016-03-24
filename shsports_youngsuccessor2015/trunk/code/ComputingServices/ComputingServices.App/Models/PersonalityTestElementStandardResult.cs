@@ -45,5 +45,10 @@ namespace ComputingServices.App.Models
         /// </summary>
         [DataMember]
         public int Value { get; set; }
+        /// <summary>
+        /// 本因素原始分
+        /// </summary>
+        [DataMember]
+        public int OriginalValue { get; set; }
     }
 }
